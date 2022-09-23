@@ -1,20 +1,48 @@
 body {
     width: 600px;
+    height: 100%;
     margin: 0 auto;
-    background-color: rgb(231, 204, 204);
+    /* background-color: rgb(231, 204, 204); */
+    background-image: linear-gradient(45deg, #00c6fb, #005bea);
 }
 
 #btn {
-    height: 100px;
+    height: 70px;
     width: 200px;
     margin: 0 auto;
     margin-top: 40px;
+    border-radius: 20px;
+    transition: 0.4s;
+    font-size: 55px;
+    cursor: pointer;
 }
 
 .btn-on {
+    border: 3px solid green;
+    border-color: green;
+}
+
+.btn-on:hover {
     background-color: green;
 }
 
+.btn-on:active {
+    box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+}
+
+.btn-off:active {
+    box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+}
+
 .btn-off {
+    border: 3px solid red;
+    
+}
+
+.btn-off:hover {
     background-color: red;
+}
+
+h1 {
+    text-align: center;
 }

@@ -6,8 +6,15 @@ function switcher () {
     let request = fetch('http://192.168.1.144/relaysw', {mode: 'no-cors'});
 request
   .then(response => {
-    // обработка ответа
-   // console.log( response );
+   console.log( response );
+   if (btn.classList.contains('btn-on')) {
+       btn.classList.remove('btn-on');
+       btn.classList.add('btn-off');
+   }  else {
+    btn.classList.remove('btn-off');
+    btn.classList.add('btn-on');
+};
+btn.classList.toggle
   })
   .catch(error => {
     // обработка ошибки
@@ -23,11 +30,14 @@ function info () {
             var response = request.responseText;
             relStatus = Number.parseInt(response);
             if (relStatus == 0) {
+                btn.classList.remove('btn-on');
                 btn.classList.add('btn-off');
-            } else {
+            } 
+            else {
+                btn.classList.remove('btn-off');
                 btn.classList.add('btn-on');
             }
-        }
+        } else {alert("Не в одной сети!")}
     }
     request.send();
 };
@@ -36,3 +46,5 @@ function info () {
 btn.addEventListener('click', switcher);
 
 document.addEventListener('DOMContentLoaded', info);
+
+setInterval(info, 500);
