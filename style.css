@@ -1,0 +1,20 @@
+body {
+    width: 600px;
+    margin: 0 auto;
+    background-color: rgb(231, 204, 204);
+}
+
+#btn {
+    height: 100px;
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.btn-on {
+    background-color: green;
+}
+
+.btn-off {
+    background-color: red;
+}
