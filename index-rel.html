@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Реле</title>
+
+</head>
+<body>
+  <div class="header">
+    <button class="home-btn">&#127968;</button>
+    <h1>WIFI реле</h1>
+  </div>
+  <div class="btn-cont">
+    <button id="btn" class="">ON/OFF</button>
+    <button id="autoSw" class="autoSw">Автомат</button>
+  </div>
+  <div class="temp-cont">
+    <div class="input-wrapper">
+      <span>Включение</span>
+      <input id="inpOn" class="inputs" type="number">
+      <button id="onBtn" class="onBtn">&#10003;</button>
+    </div>
+    <div class="input-wrapper">
+      <span>Выключение</span>
+      <input id="inpOff" class="inputs" type="number">
+      <button id="offBtn" class="onBtn">&#10003;</button>
+    </div>
+    <p class="hister">50 60</p>
+  </div>
+  <div class="data-cont">
+    <p class="temp"></p>
+    <p class="hudm"></p>
+  </div>
+  <style>
+    
+    body {
+      width: 400px;
+      height: 100%;
+      margin: 0 auto;
+      background-color: rgb(34, 42, 77);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+      width: 300px;
+      height: 42px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      gap: 50px;
+      border: 3px solid white;
+      border-radius: 45px;
+      margin-top: 20px;
+      padding: 10px;
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+    }
+
+    .home-btn {
+      background-color: #95c9f0;
+      border-radius: 50%;
+      height: 55px;
+      width: 55px;
+      border: none;
+      font-size: 25px;
+
+    }
+
+    .btn-cont {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      border: 3px solid white;
+      border-radius: 45px;
+      margin-top: 20px;
+      padding: 10px;
+      background: linear-gradient(73deg, rgba(4,0,51,1) 0%, rgba(6,45,149,1) 50%, rgba(0,119,198,1) 100%);
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+    }
+
+    .temp-cont {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 3px solid white;
+      border-radius: 45px;
+      margin-top: 20px;
+      padding: 10px;
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+      background: linear-gradient(163deg, rgba(255,87,87,1) 0%, rgba(94,137,252,1) 73%, rgba(102,191,250,1) 100%);
+    }
+
+    .data-cont {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 3px solid white;
+      border-radius: 45px;
+      margin-top: 20px;
+      padding: 10px;
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+    }
+
+    #btn {
+      height: 70px;
+      width: 250px;
+      transition: 0.4s;
+      font-size: 55px;
+      cursor: pointer;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 57.5px;
+    }
+
+    span {
+      color: aliceblue;
+      font-size: 20px;
+    }
+
+    .hister {
+      color: aliceblue;
+      font-size: 28px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .btn-on {
+      border: 3px solid green;
+      background-color: rgb(162, 224, 103);
+    }
+
+    .btn-on:hover {
+      background-color: green;
+    }
+
+    .btn-on:active {
+      box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+    }
+
+    .btn-off:active {
+      box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+    }
+
+    .btn-off {
+      border: 3px solid red;
+      background-color: rgb(222, 121, 121);
+    }
+
+    .btn-off:hover {
+      background-color: red;
+    }
+
+    h1 {
+      text-align: center;
+      color: aliceblue;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      margin-right: 10px;
+    }
+
+    .temp {
+      font-size: 25px;
+      text-align: center;
+      color: aliceblue;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .hudm {
+      font-size: 25px;
+      text-align: center;
+      color: aliceblue;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .onBtn {
+      height: 50px;
+      width: 50px;
+      background-color: rgb(180, 202, 235);
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    .onBtn:active {
+      box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+      border: 2px solid red;
+    }
+
+    .inputs {
+      height: 50px;
+      width: 70px;
+      margin-bottom: 5px;
+      font-size: 30px;
+      border-radius: 10px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    .autoSw {
+      width: 250px;
+      height: 60px;
+      font-size: 30px;
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: rgb(124, 187, 255);
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 57.5px;
+    }
+
+    .autoSw:active {
+      box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+      border: 2px solid red;
+    }
+
+    .autoOn {
+      background-color: rgb(112, 228, 77);
+    }
+
+    .autoOff {
+      background-color: rgb(232, 130, 130);
+    }
+
+    .input-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  </style>
+  <script>
+    const btn = document.querySelector("#btn");
+      const temp = document.querySelector('.temp');
+      const hudm = document.querySelector('.hudm');
+      const inpOn = document.querySelector('#inpOn');
+      const inpOff = document.querySelector('#inpOff');
+      const onBtn = document.querySelector('#onBtn');
+      const offBtn = document.querySelector('#offBtn');
+      const hister = document.querySelector('.hister');
+      const autoSw = document.querySelector('#autoSw');
+
+      var relStatus = 0;
+
+      function switcher() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/relaysw", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+            if (relStatus == 0) {
+              btn.classList.remove("btn-on");
+              btn.classList.add("btn-off");
+            } else {
+              btn.classList.remove("btn-off");
+              btn.classList.add("btn-on");
+            }
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function info() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/relaystat", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            console.log(response);
+            if (relStatus[0] == 0) {
+              btn.classList.remove("btn-on");
+              btn.classList.add("btn-off");
+              btn.innerHTML = 'OFF';
+            } else {
+              btn.classList.remove("btn-off");
+              btn.classList.add("btn-on");
+              btn.innerHTML = 'ON';
+            };
+            if (relStatus[1] == 0) {
+              autoSw.classList.remove("autoOn");
+              autoSw.innerHTML = "Автомат OFF";
+            } else {
+              autoSw.classList.add("autoOn");
+              autoSw.innerHTML = "Автомат ON";
+            };
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function temper() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/temp", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            temp.innerHTML = `Температура: ${response} °C`;
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function hudmer() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/hudm", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+            hudm.innerHTML = `Давление: ${relStatus} мм.рт.ст.`;
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function onTemper() {
+        var digit = inpOn.value;
+        if (digit !== "") {
+          var request = new XMLHttpRequest();
+          request.open("GET", `http://192.168.1.144/temps?onTemp=${digit}`, true);
+          request.onload = function () {
+            if (request.readyState == 4 && request.status == 200) {
+
+            } else {
+              alert("Не в одной сети!");
+            }
+          };
+          request.send();
+        }
+      }
+
+      function offTemper() {
+        var digit = inpOff.value;
+        if (digit !== "") {
+          var request = new XMLHttpRequest();
+          request.open("GET", `http://192.168.1.144/temps?offTemp=${digit}`, true);
+          request.onload = function () {
+            if (request.readyState == 4 && request.status == 200) {
+
+            } else {
+              alert("Не в одной сети!");
+            }
+          };
+          request.send();
+        }
+      }
+
+      function temperatures() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/autoInfo", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            hister.innerHTML = response;
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function autoSwitch() {
+
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/automat", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      btn.addEventListener("click", switcher);
+
+      autoSw.addEventListener("click", autoSwitch);
+
+      onBtn.addEventListener("click", onTemper);
+      offBtn.addEventListener("click", offTemper);
+
+      document.addEventListener("DOMContentLoaded", info);
+
+      setInterval(info, 500);
+      setInterval(temper, 500);
+      setInterval(hudmer, 500);
+      setInterval(temperatures, 1000);
+
+  </script>
+</body>
+
+</html>
