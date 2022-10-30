@@ -16,35 +16,35 @@
   <div class="temp-cont">
     <div class="temp-item">
         <h2>Дом</h2>
-        <p class="temp-home">28 °C</p>
+        <p class="temp-home">-- °C</p>
     </div>
     <div class="temp-item">
         <h2>Улица</h2>
-        <p class="temp">28 °C</p>
-        <p class="hudm">Влаж. 55 %</p>
+        <p class="temp">-- °C</p>
+        <p class="hudm">Влаж. -- %</p>
     </div>
   </div>
   <div class="btn-cont">
-    <p class="ord rosa">Точка росы 8 °C</p>
-    <p class="ord press">Давление 766 мм.рт.ст.</p>
-    <p class="ord rain">Вероятность дождя 50 %</p>
+    <p class="ord rosa">Точка росы -- °C</p>
+    <p class="ord press">Давление --- мм.рт.ст.</p>
+    <p class="ord rain">Вероятность дождя -- %</p>
   </div>
   <div class="btn-cont hi">
     <div class="gist-cont">
         <h3>MIN</h3>
-        <p class="min-temp">3 °C</p>
+        <p class="min-temp">-- °C</p>
         <button class="reset-min">Сброс</button>
     </div>
     <div class="gist-cont">
         <h3>MAX</h3>
-        <p class="max-temp">30 °C</p>
+        <p class="max-temp">-- °C</p>
         <button class="reset-max">Сброс</button>
     </div>
     </div>
   <style>
     
     body {
-      width: 400px;
+      width: 360px;
       height: 100%;
       margin: 0 auto;
       background-color: rgb(34, 42, 77);
@@ -155,7 +155,7 @@
     }
 
     h3 {
-        font-size: 30px;
+        font-size: 23px;
     }
 
     .ord {
@@ -185,7 +185,7 @@
     }
 
     .min-temp {
-        font-size: 30px;
+        font-size: 23px;
     }
 
     .reset-min {
@@ -206,7 +206,7 @@
     }
 
     .max-temp {
-        font-size: 30px;
+        font-size: 23px;
     }
 
     .reset-max {
@@ -220,24 +220,39 @@
 
   </style>
   <script>
-    const btn = document.querySelector("#btn");
+    
+    const tempHome = document.querySelector(".temp-home");
+    const press = document.querySelector(".press");
+    const minTemp = document.querySelector(".min-temp");
+    const maxTemp = document.querySelector(".max-temp");
+    const minRes = document.querySelector(".reset-min");
+    const maxRes = document.querySelector(".reset-max");
+    const rain = document.querySelector(".rain");
 
-      var relStatus = 0;
+      
 
-      function switcher() {
+      function temper() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.145/relaysw", false);
+        request.open("GET", "http://192.168.1.144/temp", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            tempHome.innerHTML = `${response} °C`;
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function presser() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/hudm", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             relStatus = Number.parseInt(response);
-            if (relStatus == 0) {
-              btn.classList.remove("btn-on");
-              btn.classList.add("btn-off");
-            } else {
-              btn.classList.remove("btn-off");
-              btn.classList.add("btn-on");
-            }
+            press.innerHTML = `Давление: ${relStatus} мм.рт.ст.`;
           } else {
             alert("Не в одной сети!");
           }
@@ -245,23 +260,13 @@
         request.send();
       }
 
-      function info() {
+      function getMin() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.145/relaystat", true);
+        request.open("GET", "http://192.168.1.144/getMin", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            relStatus = response;
-            console.log(response);
-            if (relStatus[0] == 1) {
-              btn.classList.remove("btn-on");
-              btn.classList.add("btn-off");
-              btn.innerHTML = 'OFF';
-            } else {
-              btn.classList.remove("btn-off");
-              btn.classList.add("btn-on");
-              btn.innerHTML = 'ON';
-            };
+            minTemp.innerHTML = `${response} °C`;
           } else {
             alert("Не в одной сети!");
           }
@@ -269,12 +274,67 @@
         request.send();
       }
 
-      btn.addEventListener("click", switcher);
+      function getMax() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/getMax", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            maxTemp.innerHTML = `${response} °C`;
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
 
-      document.addEventListener("DOMContentLoaded", info);
+      function resMin() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/resMin", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            getMin();
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
 
-      setInterval(info, 500);
+      function resMax() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/resMax", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            getMax();
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
 
+      function getForecast() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/getForecast", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            rain.innerHTML = `Вероятность дождя ${response} %`;
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      document.addEventListener("DOMContentLoaded", presser);
+      document.addEventListener("DOMContentLoaded", temper);
+      document.addEventListener("DOMContentLoaded", getMax);
+      document.addEventListener("DOMContentLoaded", getMin);
+      document.addEventListener("DOMContentLoaded", getForecast);
+      minRes.addEventListener("click", resMin);
+      maxRes.addEventListener("click", resMax);
   </script>
 </body>
 
