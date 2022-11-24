@@ -5,41 +5,31 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Метеостанция</title>
+  <title>Плюсская погода</title>
 
 </head>
 <body>
   <div class="header">
     <button class="home-btn">&#127968;</button>
-    <h1>Метеостанция</h1>
+    <h1>Плюсская погода</h1>
   </div>
   <div class="temp-cont">
     <div class="temp-item">
-        <h2>Дом</h2>
+        <h2>Балкон</h2>
         <p class="temp-home">-- °C</p>
     </div>
     <div class="temp-item">
         <h2>Улица</h2>
         <p class="temp">-- °C</p>
-        <p class="hudm">Влаж. -- %</p>
     </div>
   </div>
   <div class="btn-cont">
-    <p class="ord rosa">Точка росы -- °C</p>
     <p class="ord press">Давление --- мм.рт.ст.</p>
     <p class="ord rain">Вероятность дождя -- %</p>
   </div>
   <div class="btn-cont hi">
-    <div class="gist-cont">
-        <h3>MIN</h3>
-        <p class="min-temp">-- °C</p>
-        <button class="reset-min">Сброс</button>
-    </div>
-    <div class="gist-cont">
-        <h3>MAX</h3>
-        <p class="max-temp">-- °C</p>
-        <button class="reset-max">Сброс</button>
-    </div>
+    <p class="hister-info"></p>
+    <button class="reset-min">Сброс!</button>
     </div>
   <style>
     
@@ -81,7 +71,7 @@
 
     .btn-cont {
       width: 300px;
-      height: 100px;
+      height: 65px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -190,11 +180,13 @@
 
     .reset-min {
         height: 40px;
+        width: 70px;
         background-color: #e57373;
         border: none;
         border-radius: 15px;
         cursor: pointer;
         transition: 0.3s;
+        text-align: center;
     }
 
     .reset-min:hover {
@@ -218,22 +210,30 @@
         transition: 0.3s;
     }
 
+    .hister-info {
+        color: aliceblue;
+        margin-top: 35px;
+        font-size: 15px;
+    }
+
   </style>
   <script>
     
     const tempHome = document.querySelector(".temp-home");
+    const temp = document.querySelector(".temp");
     const press = document.querySelector(".press");
     const minTemp = document.querySelector(".min-temp");
     const maxTemp = document.querySelector(".max-temp");
     const minRes = document.querySelector(".reset-min");
     const maxRes = document.querySelector(".reset-max");
     const rain = document.querySelector(".rain");
+    const hister = document.querySelector(".hister-info");
 
       
 
       function temper() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.144/temp", true);
+        request.open("GET", "http://192.168.1.160/temp", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -245,9 +245,23 @@
         request.send();
       }
 
+      function temperOut() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.160/tempOut", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            temp.innerHTML = `${response} °C`;
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
       function presser() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.144/hudm", true);
+        request.open("GET", "http://192.168.1.160/hudm", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -262,25 +276,11 @@
 
       function getMin() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.144/getMin", true);
+        request.open("GET", "http://192.168.1.160/tempMid", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            minTemp.innerHTML = `${response} °C`;
-          } else {
-            alert("Не в одной сети!");
-          }
-        };
-        request.send();
-      }
-
-      function getMax() {
-        var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.144/getMax", true);
-        request.onload = function () {
-          if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            maxTemp.innerHTML = `${response} °C`;
+            hister.innerHTML = response;
           } else {
             alert("Не в одной сети!");
           }
@@ -290,7 +290,7 @@
 
       function resMin() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.144/resMin", true);
+        request.open("GET", "http://192.168.1.160/reset", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             getMin();
@@ -301,22 +301,9 @@
         request.send();
       }
 
-      function resMax() {
-        var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.144/resMax", true);
-        request.onload = function () {
-          if (request.readyState == 4 && request.status == 200) {
-            getMax();
-          } else {
-            alert("Не в одной сети!");
-          }
-        };
-        request.send();
-      }
-
       function getForecast() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.144/getForecast", true);
+        request.open("GET", "http://192.168.1.160/getForecast", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -330,11 +317,10 @@
 
       document.addEventListener("DOMContentLoaded", presser);
       document.addEventListener("DOMContentLoaded", temper);
-      document.addEventListener("DOMContentLoaded", getMax);
+      document.addEventListener("DOMContentLoaded", temperOut);
       document.addEventListener("DOMContentLoaded", getMin);
       document.addEventListener("DOMContentLoaded", getForecast);
       minRes.addEventListener("click", resMin);
-      maxRes.addEventListener("click", resMax);
   </script>
 </body>
 

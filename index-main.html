@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная панель</title>
+
+</head>
+<body>
+  <div class="header">
+    <h1>&#9881;  Главная панель  &#9881;</h1>
+  </div>
+  <div class="btn-cont meteo">
+    <h2><a href="http://192.168.1.145/meteo">Метеостанция</a></h2>
+    <p class="temp">15 °C</p>
+  </div>
+  <div class="btn-cont">
+    <h2><a href="http://192.168.1.144/">Термостат</a></h2>
+    <button class="status-btn termos">--</button>
+  </div>
+  <div class="btn-cont">
+    <h2><a href="http://192.168.1.145/">Выключатель</a></h2>
+    <button class="status-btn relay">--</button>
+  </div>
+  <style>
+    
+    body {
+      width: 370px;
+      height: 100%;
+      margin: 0 auto;
+      background-color: rgb(34, 42, 77);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+      width: 300px;
+      height: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      gap: 50px;
+      border: 3px solid white;
+      border-radius: 30px;
+      margin-top: 20px;
+      padding: 10px;
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+      background-image: linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%);
+    }
+
+    .btn-cont {
+      width: 300px;
+      height: 60px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      border: 3px solid white;
+      border-radius: 45px;
+      margin-top: 20px;
+      padding: 10px;
+      background: linear-gradient(73deg, rgba(4,0,51,1) 0%, rgba(6,45,149,1) 50%, rgba(0,119,198,1) 100%);
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+    }
+
+    .meteo {
+        background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+        border-radius: 30px;
+        margin-top: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      color: aliceblue;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    h2 {
+        color: aliceblue;
+        font-size: 18px;
+    }
+
+    a {
+        color: aliceblue;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        color: aqua;
+    }
+
+    .temp {
+        color: aliceblue;
+        font-size: 30px;
+    }
+
+    .status-btn {
+        height: 60px;
+        width: 80px;
+        border: none;
+        border-radius: 25px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+
+
+  </style>
+  <script>
+    const termos = document.querySelector(".termos");
+    const relay = document.querySelector(".relay");
+
+
+    function switcherTerm() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/relaysw", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+            if (relStatus == 0) {
+              termos.style.backgroundColor = 'red';
+              termos.innerHTML = "OFF"
+            } else {
+                termos.style.backgroundColor = 'green';
+              termos.innerHTML = "ON"
+            }
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function switcherRelay() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.145/relaysw", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+            if (relStatus == 1) {
+              relay.style.backgroundColor = 'red';
+              relay.innerHTML = "OFF"
+            } else {
+                relay.style.backgroundColor = 'green';
+              relay.innerHTML = "ON"
+            }
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function infoTermos() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.144/relaystat", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            console.log(response);
+            if (relStatus[0] == 0) {
+                termos.style.backgroundColor = 'red';
+              termos.innerHTML = "OFF";
+            } else {
+                termos.style.backgroundColor = 'green';
+              termos.innerHTML = "ON";
+            };
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function infoRelay() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.145/relaystat", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            console.log(response);
+            if (relStatus[0] == 1) {
+                relay.style.backgroundColor = 'red';
+              relay.innerHTML = "OFF";
+            } else {
+                relay.style.backgroundColor = 'green';
+              relay.innerHTML = "ON";
+            };
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function inform () {
+        infoTermos();
+        infoRelay();
+      }
+
+      termos.addEventListener("click", switcherTerm);
+      relay.addEventListener("click", switcherRelay);
+      document.addEventListener("DOMContentLoaded", inform);
+
+  </script>
+</body>
+
+</html>
