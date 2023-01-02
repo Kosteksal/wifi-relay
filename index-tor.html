@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Торшер</title>
+
+</head>
+<body>
+  <div class="header">
+    <button class="home-btn">&#127968;</button>
+    <h1>Торшер</h1>
+  </div>
+  <div class="btn-cont">
+    <button id="btn" class="">ON/OFF</button>
+    <button id="btn1" class="">Яркость</button>
+  </div>
+  <style>
+    
+    body {
+      width: 370px;
+      height: 100%;
+      margin: 0 auto;
+      background-color: rgb(34, 42, 77);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+      width: 300px;
+      height: 42px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      gap: 50px;
+      border: 3px solid white;
+      border-radius: 45px;
+      margin-top: 20px;
+      padding: 10px;
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+    }
+
+    .home-btn {
+      background-color: #95c9f0;
+      border-radius: 50%;
+      height: 55px;
+      width: 55px;
+      border: none;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .btn-cont {
+      width: 300px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      border: 3px solid white;
+      border-radius: 45px;
+      margin-top: 20px;
+      padding: 10px;
+      background: linear-gradient(73deg, rgba(4,0,51,1) 0%, rgba(6,45,149,1) 50%, rgba(0,119,198,1) 100%);
+      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+    }
+
+    #btn {
+      height: 100px;
+      width: 250px;
+      transition: 0.4s;
+      font-size: 55px;
+      cursor: pointer;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 57.5px;
+    }
+
+    #btn1 {
+      height: 70px;
+      width: 250px;
+      transition: 0.4s;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 57.5px;
+    }
+
+    .btn1-low {
+        background-color: rgb(151, 110, 57);
+        box-shadow: inset 3px 66px 40px 4px rgba(0,0,0,0.1);
+    }
+
+    .btn1-high {
+        background-color: rgb(242, 255, 0);
+    }
+
+    .btn-on {
+      border: 3px solid green;
+      background-color: rgb(162, 224, 103);
+    }
+
+    .btn-on:hover {
+      background-color: green;
+    }
+
+    .btn-on:active {
+      box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+    }
+
+    .btn-off:active {
+      box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+    }
+
+    .btn-off {
+      border: 3px solid red;
+      background-color: rgb(222, 121, 121);
+    }
+
+    .btn-off:hover {
+      background-color: red;
+    }
+
+    h1 {
+      text-align: center;
+      color: aliceblue;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    .onBtn {
+      height: 50px;
+      width: 50px;
+      background-color: rgb(180, 202, 235);
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    .onBtn:active {
+      box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+      border: 2px solid red;
+    }
+
+  </style>
+  <script>
+    const btn = document.querySelector("#btn");
+    const btn1 = document.querySelector("#btn1");
+
+      var relStatus = 0;
+      var maxVal;
+      var val;
+
+      function switcher() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.161/switch", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function satur() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.161/satur", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function info() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.161/info", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            let arr = relStatus.split(",");
+            maxVal = arr[0];
+            val = arr[1];
+            console.log(arr);
+            if (val == 0) {
+                btn.classList.remove("btn-on");
+              btn.classList.add("btn-off");
+            } else {
+              btn.classList.remove("btn-off");
+              btn.classList.add("btn-on");
+            }
+            if (maxVal == 300) {
+              btn1.classList.remove("btn1-high");
+              btn1.classList.add("btn1-low");
+            } else {
+              btn1.classList.remove("btn1-low");
+              btn1.classList.add("btn1-high");
+            }
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      btn.addEventListener("click", switcher);
+      btn1.addEventListener("click", satur);
+
+      document.addEventListener("DOMContentLoaded", info);
+
+      setInterval(info, 1000);
+
+  </script>
+</body>
+
+</html>
