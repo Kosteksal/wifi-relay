@@ -234,7 +234,7 @@
 
       function temper() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.160/temp", true);
+        request.open("GET", "../temp", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -248,7 +248,7 @@
 
       function temperOut() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.160/tempOut", true);
+        request.open("GET", "../tempOut", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -262,7 +262,7 @@
 
       function presser() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.160/hudm", true);
+        request.open("GET", "../hudm", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -277,7 +277,7 @@
 
       function getMin() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.160/tempMid", true);
+        request.open("GET", "../tempMid", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -291,7 +291,7 @@
 
       function resMin() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.160/reset", true);
+        request.open("GET", "../reset", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             getMin();
@@ -304,7 +304,7 @@
 
       function getForecast() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.160/getForecast", true);
+        request.open("GET", "../getForecast", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;

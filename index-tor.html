@@ -160,7 +160,7 @@
 
       function switcher() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.161/switch", false);
+        request.open("GET", "../switch", false);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -174,7 +174,7 @@
 
       function satur() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.161/satur", false);
+        request.open("GET", "../satur", false);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -188,7 +188,7 @@
 
       function info() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.161/info", true);
+        request.open("GET", "../info", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;

@@ -1,0 +1,524 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Плюсса</title>
+
+</head>
+
+<body>
+    <div class="header">
+        <button class="home-btn h-btn">&#9925;</button>
+        <button class="lamp-btn">&#128161;</button>
+        <h1>Плюсса</h1>
+    </div>
+    <div class="container">
+        <div class="card-box">
+            <div class="meteo">
+                <h2 class="title">Метеостанция</h2>
+                <div class="temp-cont">
+                    <div class="temp-item">
+                        <h2>Балкон</h2>
+                        <p class="temp-home">-- °C</p>
+                    </div>
+                    <div class="temp-item">
+                        <h2>Улица</h2>
+                        <p class="temp">-- °C</p>
+                    </div>
+                </div>
+                <div class="btn-cont">
+                    <p class="ord press">Давление --- мм.рт.ст.</p>
+                    <p class="ord rain">Вероятность дождя -- %</p>
+                </div>
+                <div class="btn-cont hi">
+                    <p class="hister-info"></p>
+                    <button class="reset-min">Сброс!</button>
+                </div>
+            </div>
+            <div class="tor">
+                <h2 class="title">Торшер</h2>
+                <div class="btn-cont1">
+                    <button id="btn" class="">ON/OFF</button>
+                    <button id="btn1" class="">Яркость</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .container {
+            position: relative;
+            overflow: hidden;
+            width: 360px;
+        }
+
+        .card-box {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            position: inherit;
+            left: 20px;
+            transition: 0.3s;
+        }
+
+        body {
+            width: 360px;
+            height: 100%;
+            margin: 0 auto;
+            background-color: rgb(34, 42, 77);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            width: 300px;
+            height: 42px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 50px;
+            border: 3px solid white;
+            border-radius: 45px;
+            margin-top: 20px;
+            padding: 10px;
+            box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+        }
+
+        .home-btn {
+            background-color: #95c9f0;
+            border-radius: 50%;
+            height: 48px;
+            width: 48px;
+            border: none;
+            font-size: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lamp-btn {
+            background-color: #95c9f0;
+            border-radius: 50%;
+            height: 48px;
+            width: 48px;
+            border: none;
+            font-size: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .h-btn {
+            height: 55px;
+            width: 55px;
+        }
+
+        .btn-cont {
+            width: 300px;
+            height: 65px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid white;
+            border-radius: 45px;
+            margin-top: 20px;
+            padding: 10px;
+            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
+        }
+
+        .btn-cont1 {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            gap: 20px;
+            border: 3px solid white;
+            border-radius: 45px;
+            margin-top: 20px;
+            padding: 10px;
+            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
+        }
+
+        .temp-cont {
+            width: 300px;
+            height: 150px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            border: 3px solid white;
+            border-radius: 45px;
+            margin-top: 20px;
+            padding: 10px;
+            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
+        }
+
+        .temp-item {
+            margin-top: 0;
+            height: 110px;
+            width: 110px;
+            border: 3px solid white;
+            border-radius: 34px;
+            padding: 10px;
+            background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .temp {
+            font-size: 25px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .temp-home {
+            font-size: 25px;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .hudm {
+            font-size: 20px;
+            margin-top: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: aliceblue;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        h2 {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .title {
+            color: aliceblue;
+            margin-left: 90px;
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 23px;
+        }
+
+        .ord {
+            color: aliceblue;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .hi {
+            height: 160px;
+            gap: 5px;
+        }
+
+        .gist-cont {
+            height: 50px;
+            width: 200px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border: 3px solid white;
+            border-radius: 20px;
+            padding: 10px;
+            background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+            box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+        }
+
+        .min-temp {
+            font-size: 23px;
+        }
+
+        .reset-min {
+            height: 40px;
+            width: 70px;
+            background-color: #e57373;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .reset-min:hover {
+            background-color: red;
+        }
+
+        .reset-max:hover {
+            background-color: red;
+        }
+
+        .max-temp {
+            font-size: 23px;
+        }
+
+        .reset-max {
+            height: 40px;
+            background-color: #e57373;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hister-info {
+            color: aliceblue;
+            margin-top: 35px;
+            font-size: 15px;
+
+        }
+
+        #btn {
+            height: 100px;
+            width: 250px;
+            transition: 0.4s;
+            font-size: 55px;
+            cursor: pointer;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 57.5px;
+        }
+
+        #btn1 {
+            height: 70px;
+            width: 250px;
+            transition: 0.4s;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 57.5px;
+        }
+
+        .btn1-low {
+            background-color: rgb(151, 110, 57);
+            box-shadow: inset 3px 66px 40px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn1-high {
+            background-color: rgb(242, 255, 0);
+        }
+
+        .btn-on {
+            border: 3px solid green;
+            background-color: rgb(162, 224, 103);
+        }
+
+        .btn-off {
+            border: 3px solid red;
+            background-color: rgb(222, 121, 121);
+        }
+    </style>
+    <script>
+
+        const tempHome = document.querySelector(".temp-home");
+        const temp = document.querySelector(".temp");
+        const press = document.querySelector(".press");
+        const minTemp = document.querySelector(".min-temp");
+        const maxTemp = document.querySelector(".max-temp");
+        const minRes = document.querySelector(".reset-min");
+        const maxRes = document.querySelector(".reset-max");
+        const rain = document.querySelector(".rain");
+        const hister = document.querySelector(".hister-info");
+
+
+
+        function temper() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/temp", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    tempHome.innerHTML = `${response} °C`;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function temperOut() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/tempOut", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    temp.innerHTML = `${response} °C`;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function presser() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/hudm", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    relStatus = Number.parseInt(response);
+                    press.innerHTML = `Давление: ${relStatus} мм.рт.ст.`;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function getMin() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/tempMid", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    hister.innerHTML = response;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function resMin() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/reset", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    getMin();
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function getForecast() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/getForecast", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    rain.innerHTML = `Вероятность дождя ${response} %`;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        document.addEventListener("DOMContentLoaded", presser);
+        document.addEventListener("DOMContentLoaded", temper);
+        document.addEventListener("DOMContentLoaded", temperOut);
+        document.addEventListener("DOMContentLoaded", getMin);
+        document.addEventListener("DOMContentLoaded", getForecast);
+        minRes.addEventListener("click", resMin);
+
+
+        const btn = document.querySelector("#btn");
+    const btn1 = document.querySelector("#btn1");
+
+      var relStatus = 0;
+      var maxVal;
+      var val;
+
+      function switcher() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.160/switch", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function satur() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.160/satur", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function info() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.160/info", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            let arr = relStatus.split(",");
+            maxVal = arr[0];
+            val = arr[1];
+            console.log(arr);
+            if (val == 0) {
+                btn.classList.remove("btn-on");
+              btn.classList.add("btn-off");
+            } else {
+              btn.classList.remove("btn-off");
+              btn.classList.add("btn-on");
+            }
+            if (maxVal == 300) {
+              btn1.classList.remove("btn1-high");
+              btn1.classList.add("btn1-low");
+            } else {
+              btn1.classList.remove("btn1-low");
+              btn1.classList.add("btn1-high");
+            }
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      btn.addEventListener("click", switcher);
+      btn1.addEventListener("click", satur);
+
+      document.addEventListener("DOMContentLoaded", info);
+
+      setInterval(info, 1000);
+
+
+      const weat = document.querySelector(".home-btn");
+      const lamp = document.querySelector(".lamp-btn");
+      const box = document.querySelector(".card-box");
+
+      weat.addEventListener("click", weather);
+      lamp.addEventListener("click", lamper);
+
+      function weather () {
+        lamp.classList.remove("h-btn");
+        weat.classList.add("h-btn");
+        box.style.left = "20px";
+      }
+
+      function lamper () {
+        lamp.classList.add("h-btn");
+        weat.classList.remove("h-btn");
+        box.style.left = "-330px";
+      }
+
+    </script>
+</body>
+
+</html>
