@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Реле</title>
+  <title>Выключатель</title>
 
 </head>
 <body>
   <div class="header">
     <button class="home-btn">&#127968;</button>
-    <h1>WIFI выключатель</h1>
+    <h1>Выключатель</h1>
   </div>
   <div class="btn-cont">
     <button id="btn" class="">ON/OFF</button>
@@ -22,7 +22,7 @@
       width: 370px;
       height: 100%;
       margin: 0 auto;
-      background-color: rgb(34, 42, 77);
+      background-color: #2E2E3E;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -37,21 +37,21 @@
       justify-content: space-around;
       align-items: center;
       gap: 50px;
-      border: 3px solid white;
-      border-radius: 45px;
       margin-top: 20px;
       padding: 10px;
-      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+      background: rgba(70, 71, 94, 0.7);
+      border-radius: 20px;
     }
 
     .home-btn {
-      background-color: #95c9f0;
+      background: #282838;
       border-radius: 50%;
-      height: 55px;
-      width: 55px;
+      height: 50px;
+      width: 50px;
       border: none;
       font-size: 25px;
       cursor: pointer;
+      border: 3px solid #27D71C;
     }
 
     .btn-cont {
@@ -62,12 +62,10 @@
       align-items: center;
       justify-content: space-around;
       gap: 10px;
-      border: 3px solid white;
-      border-radius: 45px;
+      background: rgba(70, 71, 94, 0.7);
+      border-radius: 20px;
       margin-top: 20px;
       padding: 10px;
-      background: linear-gradient(73deg, rgba(4,0,51,1) 0%, rgba(6,45,149,1) 50%, rgba(0,119,198,1) 100%);
-      box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
     }
 
     #btn {
@@ -77,33 +75,35 @@
       font-size: 55px;
       cursor: pointer;
       box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 57.5px;
+      border-radius: 20px;
+      border: none;
     }
 
     .btn-on {
-      border: 3px solid green;
-      background-color: rgb(162, 224, 103);
+      background: linear-gradient(180deg, #27D71C 0%, #ABE605 100%);
+      transition: 0.4s;
     }
 
     .btn-on:hover {
-      background-color: green;
+      background: linear-gradient(180deg, #077000 0%, #ABE605 100%);
     }
 
     .btn-on:active {
       box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+      transform: scale(0.97);
     }
 
     .btn-off:active {
       box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+      transform: scale(0.97);
     }
 
     .btn-off {
-      border: 3px solid red;
-      background-color: rgb(222, 121, 121);
+      background: linear-gradient(180deg, #d71c1c 0%, #e65f05 100%);
     }
 
     .btn-off:hover {
-      background-color: red;
+      background: linear-gradient(180deg, #610505 0%, #e65f05 100%);
     }
 
     h1 {
@@ -112,7 +112,10 @@
       margin-top: 2px;
       margin-bottom: 2px;
       margin-right: 10px;
+      font-style: normal;
+      font-weight: 600;
       font-size: 20px;
+      line-height: 16px;
     }
 
     .onBtn {
@@ -137,7 +140,7 @@
 
       function switcher() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.145/relaysw", false);
+        request.open("GET", "http://192.168.1.171/switch", false);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -158,13 +161,13 @@
 
       function info() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.145/relaystat", true);
+        request.open("GET", "http://192.168.1.171/info", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             relStatus = response;
             console.log(response);
-            if (relStatus[0] == 1) {
+            if (relStatus[0] == 0) {
               btn.classList.remove("btn-on");
               btn.classList.add("btn-off");
               btn.innerHTML = 'OFF';
@@ -184,7 +187,7 @@
 
       document.addEventListener("DOMContentLoaded", info);
 
-      setInterval(info, 500);
+      setInterval(info, 1000);
 
   </script>
 </body>

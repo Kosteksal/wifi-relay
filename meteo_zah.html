@@ -8,17 +8,15 @@
 
 <body>
     <div class="header">
-        <button class="home-btn h-btn">&#9925;</button>
-        <button class="lamp-btn">&#128161;</button>
-        <h1>Плюсса</h1>
+        <a href="http://192.168.1.160/"><button class="home-btn h-btn">&#127968;</button></a>
+        <h1>Метеостанция</h1>
     </div>
     <div class="container">
         <div class="card-box">
             <div class="meteo">
-                <h2 class="title">Метеостанция</h2>
                 <div class="temp-cont">
                     <div class="temp-item">
-                        <h2>Балкон</h2>
+                        <h2>Веранда</h2>
                         <p class="temp-home">-- °C</p>
                     </div>
                     <div class="temp-item">
@@ -28,18 +26,11 @@
                 </div>
                 <div class="btn-cont">
                     <p class="ord press">Давление --- мм.рт.ст.</p>
-                    <p class="ord rain">Вероятность дождя -- %</p>
                 </div>
                 <div class="btn-cont hi">
                     <p class="hister-info"></p>
                     <button class="reset-min">Сброс!</button>
-                </div>
-            </div>
-            <div class="tor">
-                <h2 class="title">Торшер</h2>
-                <div class="btn-cont1">
-                    <button id="btn" class="">ON/OFF</button>
-                    <button id="btn1" class="">Яркость</button>
+                    <p class="when">--</p>
                 </div>
             </div>
         </div>
@@ -64,7 +55,7 @@
             width: 360px;
             height: 100%;
             margin: 0 auto;
-            background-color: rgb(34, 42, 77);
+            background-color: #2E2E3E;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,15 +70,14 @@
             justify-content: space-around;
             align-items: center;
             gap: 50px;
-            border: 3px solid white;
-            border-radius: 45px;
             margin-top: 20px;
             padding: 10px;
-            box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
         }
 
         .home-btn {
-            background-color: #95c9f0;
+            background: #282838;
             border-radius: 50%;
             height: 48px;
             width: 48px;
@@ -98,7 +88,7 @@
         }
 
         .lamp-btn {
-            background-color: #95c9f0;
+            background: #282838;
             border-radius: 50%;
             height: 48px;
             width: 48px;
@@ -111,7 +101,7 @@
         .h-btn {
             height: 55px;
             width: 55px;
-            border: 4px solid red;
+            border: 3px solid #27D71C;
         }
 
         .btn-cont {
@@ -120,11 +110,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 3px solid white;
-            border-radius: 45px;
             margin-top: 20px;
             padding: 10px;
-            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
         }
 
         .btn-cont1 {
@@ -135,11 +124,10 @@
             align-items: center;
             justify-content: space-around;
             gap: 20px;
-            border: 3px solid white;
-            border-radius: 45px;
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
             margin-top: 20px;
             padding: 10px;
-            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
         }
 
         .temp-cont {
@@ -149,34 +137,36 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
-            border: 3px solid white;
-            border-radius: 45px;
             margin-top: 20px;
             padding: 10px;
-            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
         }
 
         .temp-item {
             margin-top: 0;
             height: 110px;
             width: 110px;
-            border: 3px solid white;
-            border-radius: 34px;
             padding: 10px;
-            background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: #2E2E3E;
+            box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            border: 3px solid #27D71C;
         }
 
         .temp {
+            color: aliceblue;
             font-size: 25px;
             margin-top: 0;
             margin-bottom: 0;
         }
 
         .temp-home {
+            color: aliceblue;
             font-size: 25px;
             margin-top: 5px;
             margin-bottom: 0;
@@ -193,17 +183,25 @@
             margin-top: 2px;
             margin-bottom: 2px;
             margin-right: 10px;
-            font-size: 20px;
+            font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 16px;
         }
 
         h2 {
+            color: aliceblue;
             margin-top: 10px;
             margin-bottom: 0;
+            font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 16px;
         }
 
         .title {
             color: aliceblue;
-            margin-left: 90px;
+            margin-left: 95px;
             font-size: 20px;
         }
 
@@ -244,12 +242,16 @@
         .reset-min {
             height: 40px;
             width: 70px;
-            background-color: #e57373;
+            background: linear-gradient(180deg, #d71c1c 0%, #e65f05 100%);
             border: none;
-            border-radius: 15px;
+            border-radius: 10px;
             cursor: pointer;
             transition: 0.3s;
             text-align: center;
+        }
+
+        .reset-min:active {
+            transform: scale(0.97);
         }
 
         .reset-min:hover {
@@ -273,6 +275,13 @@
             transition: 0.3s;
         }
 
+        .when {
+            color: aliceblue;
+            font-size: 15px;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
         .hister-info {
             color: aliceblue;
             margin-top: 35px;
@@ -286,8 +295,17 @@
             transition: 0.4s;
             font-size: 55px;
             cursor: pointer;
+            border: none;
             box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 57.5px;
+            border-radius: 20px;
+        }
+
+        #btn:active {
+            transform: scale(0.97);
+        }
+
+        #btn1:active {
+            transform: scale(0.97);
         }
 
         #btn1 {
@@ -297,26 +315,25 @@
             font-size: 30px;
             cursor: pointer;
             box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 57.5px;
+            border-radius: 20px;
+            border: none;
         }
 
         .btn1-low {
-            background-color: rgb(151, 110, 57);
-            box-shadow: inset 3px 66px 40px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(180deg, #ffa600 0%, #975f03 100%);
         }
 
         .btn1-high {
-            background-color: rgb(242, 255, 0);
+            background: linear-gradient(180deg, #ddff00 0%, #b9cd02 100%);
         }
 
         .btn-on {
-            border: 3px solid green;
-            background-color: rgb(162, 224, 103);
+            background: linear-gradient(180deg, #27D71C 0%, #ABE605 100%);
+            transition: 0.4s;
         }
 
         .btn-off {
-            border: 3px solid red;
-            background-color: rgb(222, 121, 121);
+            background: linear-gradient(180deg, #d71c1c 0%, #e65f05 100%);
         }
     </style>
     <script>
@@ -330,6 +347,7 @@
         const maxRes = document.querySelector(".reset-max");
         const rain = document.querySelector(".rain");
         const hister = document.querySelector(".hister-info");
+        const when = document.querySelector(".when");
 
 
 
@@ -382,7 +400,9 @@
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
-                    hister.innerHTML = response;
+                    let arr = response.split("?");
+                    hister.innerHTML = arr[0];
+                    when.innerHTML = arr[1];
                 } else {
                     alert("Не в одной сети!");
                 }
@@ -403,121 +423,11 @@
             request.send();
         }
 
-        function getForecast() {
-            var request = new XMLHttpRequest();
-            request.open("GET", "http://192.168.1.160/getForecast", true);
-            request.onload = function () {
-                if (request.readyState == 4 && request.status == 200) {
-                    var response = request.responseText;
-                    rain.innerHTML = `Вероятность дождя ${response} %`;
-                } else {
-                    alert("Не в одной сети!");
-                }
-            };
-            request.send();
-        }
-
         document.addEventListener("DOMContentLoaded", presser);
         document.addEventListener("DOMContentLoaded", temper);
         document.addEventListener("DOMContentLoaded", temperOut);
         document.addEventListener("DOMContentLoaded", getMin);
-        document.addEventListener("DOMContentLoaded", getForecast);
         minRes.addEventListener("click", resMin);
-
-
-        const btn = document.querySelector("#btn");
-    const btn1 = document.querySelector("#btn1");
-
-      var relStatus = 0;
-      var maxVal;
-      var val;
-
-      function switcher() {
-        var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.161/switch", false);
-        request.onload = function () {
-          if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            relStatus = Number.parseInt(response);
-          } else {
-            alert("Не в одной сети!");
-          }
-        };
-        request.send();
-      }
-
-      function satur() {
-        var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.161/satur", false);
-        request.onload = function () {
-          if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            relStatus = Number.parseInt(response);
-          } else {
-            alert("Не в одной сети!");
-          }
-        };
-        request.send();
-      }
-
-      function info() {
-        var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.161/info", true);
-        request.onload = function () {
-          if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            relStatus = response;
-            let arr = relStatus.split(",");
-            maxVal = arr[0];
-            val = arr[1];
-            console.log(arr);
-            if (val == 0) {
-                btn.classList.remove("btn-on");
-              btn.classList.add("btn-off");
-            } else {
-              btn.classList.remove("btn-off");
-              btn.classList.add("btn-on");
-            }
-            if (maxVal == 100) {
-              btn1.classList.remove("btn1-high");
-              btn1.classList.add("btn1-low");
-            } else {
-              btn1.classList.remove("btn1-low");
-              btn1.classList.add("btn1-high");
-            }
-          } else {
-            alert("Не в одной сети!");
-          }
-        };
-        request.send();
-      }
-
-      btn.addEventListener("click", switcher);
-      btn1.addEventListener("click", satur);
-
-      document.addEventListener("DOMContentLoaded", info);
-
-      setInterval(info, 1000);
-
-
-      const weat = document.querySelector(".home-btn");
-      const lamp = document.querySelector(".lamp-btn");
-      const box = document.querySelector(".card-box");
-
-      weat.addEventListener("click", weather);
-      lamp.addEventListener("click", lamper);
-
-      function weather () {
-        lamp.classList.remove("h-btn");
-        weat.classList.add("h-btn");
-        box.style.left = "20px";
-      }
-
-      function lamper () {
-        lamp.classList.add("h-btn");
-        weat.classList.remove("h-btn");
-        box.style.left = "-330px";
-      }
 
     </script>
 </body>

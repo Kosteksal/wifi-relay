@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container-inner">
+            <div class="input-wrapper">
+                <span class="name">Частота</span>
+                <input id="inpOn" class="inputs" type="number">
+                <button id="onBtn" class="onBtn">&#10003;</button>
+              </div>
+            <div class="list">
+                <button id="one" class="station">Эльдо</button>
+                <button id="two" class="station">Ретро</button>
+                <button id="three" class="station">Наше</button>
+                <button id="four" class="station">Питер</button>
+                <button id="five" class="station">-</button>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    body {
+        background-color: rgb(34, 42, 77);
+    }
+
+    .container {
+        width: 200px;
+        margin: 0 auto;
+        background-color: rgb(34, 42, 77);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .input-wrapper {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .name {
+        font-size: 30px;
+        color: aliceblue;
+    }
+
+    .inputs {
+        height: 50px;
+        font-size: 30px;
+        width: 120px;
+    }
+
+    .onBtn {
+        height: 40px;
+        width: 90px;
+        font-size: 30px;
+        border: none;
+        border-radius: 20px;
+        background-color: aqua;
+        margin-top: 10px;
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .station {
+        height: 50px;
+        width: 150px;
+        border-radius: 20px;
+        border: none;
+        background-color: #49860c;
+        margin-bottom: 10px;
+        color: aliceblue;
+        font-size: 20px;
+    }
+</style>
+<script>
+    const inpOn = document.querySelector('#inpOn');
+    const onBtn = document.querySelector('#onBtn');
+    const one = document.querySelector('#one');
+    const two = document.querySelector('#two');
+    const three = document.querySelector('#three');
+    const four = document.querySelector('#four');
+    const five = document.querySelector('#five');
+
+    function onTemper() {
+        var digit = inpOn.value;
+        if (digit !== "") {
+          var request = new XMLHttpRequest();
+          request.open("GET", `http://192.168.1.161/freg?onTemp=${digit}`, true);
+          console.log(digit);
+          request.onload = function () {
+            if (request.readyState == 4 && request.status == 200) {
+
+            } else {
+              alert("Не в одной сети!");
+            }
+          };
+          request.send();
+        }
+      }
+
+      function oneBtn() {
+        inpOn.value = 10140;
+      }
+
+      function twoBtn() {
+        inpOn.value = 8800;
+      }
+
+      function threeBtn() {
+        inpOn.value = 10400;
+      }
+
+      function fourBtn() {
+        inpOn.value = 10470;
+      }
+
+      function fiveBtn() {
+        inpOn.value = "--";
+      }
+
+      onBtn.addEventListener("click", onTemper);
+
+      one.addEventListener("click", oneBtn);
+      two.addEventListener("click", twoBtn);
+      three.addEventListener("click", threeBtn);
+      four.addEventListener("click", fourBtn);
+      five.addEventListener("click", fiveBtn);
+
+
+</script>
+</html>

@@ -33,10 +33,11 @@
                 <div class="btn-cont hi">
                     <p class="hister-info"></p>
                     <button class="reset-min">Сброс!</button>
+                    <p class="when">--</p>
                 </div>
             </div>
             <div class="tor">
-                <h2 class="title">Торшер</h2>
+                <h2 class="title">   Торшер</h2>
                 <div class="btn-cont1">
                     <button id="btn" class="">ON/OFF</button>
                     <button id="btn1" class="">Яркость</button>
@@ -64,7 +65,7 @@
             width: 360px;
             height: 100%;
             margin: 0 auto;
-            background-color: rgb(34, 42, 77);
+            background-color: #2E2E3E;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,15 +80,14 @@
             justify-content: space-around;
             align-items: center;
             gap: 50px;
-            border: 3px solid white;
-            border-radius: 45px;
             margin-top: 20px;
             padding: 10px;
-            box-shadow: 0px 0px 40px 7px rgba(209, 211, 212, 0.20);
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
         }
 
         .home-btn {
-            background-color: #95c9f0;
+            background: #282838;
             border-radius: 50%;
             height: 48px;
             width: 48px;
@@ -98,7 +98,7 @@
         }
 
         .lamp-btn {
-            background-color: #95c9f0;
+            background: #282838;
             border-radius: 50%;
             height: 48px;
             width: 48px;
@@ -111,7 +111,7 @@
         .h-btn {
             height: 55px;
             width: 55px;
-            border: 4px solid red;
+            border: 3px solid #27D71C;
         }
 
         .btn-cont {
@@ -120,11 +120,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 3px solid white;
-            border-radius: 45px;
             margin-top: 20px;
             padding: 10px;
-            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
         }
 
         .btn-cont1 {
@@ -135,11 +134,10 @@
             align-items: center;
             justify-content: space-around;
             gap: 20px;
-            border: 3px solid white;
-            border-radius: 45px;
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
             margin-top: 20px;
             padding: 10px;
-            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
         }
 
         .temp-cont {
@@ -149,34 +147,36 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
-            border: 3px solid white;
-            border-radius: 45px;
             margin-top: 20px;
             padding: 10px;
-            background: linear-gradient(73deg, rgba(4, 0, 51, 1) 0%, rgba(6, 45, 149, 1) 50%, rgba(0, 119, 198, 1) 100%);
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
         }
 
         .temp-item {
             margin-top: 0;
             height: 110px;
             width: 110px;
-            border: 3px solid white;
-            border-radius: 34px;
             padding: 10px;
-            background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: #2E2E3E;
+            box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            border: 3px solid #27D71C;
         }
 
         .temp {
+            color: aliceblue;
             font-size: 25px;
             margin-top: 0;
             margin-bottom: 0;
         }
 
         .temp-home {
+            color: aliceblue;
             font-size: 25px;
             margin-top: 5px;
             margin-bottom: 0;
@@ -193,17 +193,25 @@
             margin-top: 2px;
             margin-bottom: 2px;
             margin-right: 10px;
-            font-size: 20px;
+            font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 16px;
         }
 
         h2 {
+            color: aliceblue;
             margin-top: 10px;
             margin-bottom: 0;
+            font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 16px;
         }
 
         .title {
             color: aliceblue;
-            margin-left: 90px;
+            margin-left: 95px;
             font-size: 20px;
         }
 
@@ -244,12 +252,16 @@
         .reset-min {
             height: 40px;
             width: 70px;
-            background-color: #e57373;
+            background: linear-gradient(180deg, #d71c1c 0%, #e65f05 100%);
             border: none;
-            border-radius: 15px;
+            border-radius: 10px;
             cursor: pointer;
             transition: 0.3s;
             text-align: center;
+        }
+
+        .reset-min:active {
+            transform: scale(0.97);
         }
 
         .reset-min:hover {
@@ -273,6 +285,13 @@
             transition: 0.3s;
         }
 
+        .when {
+            color: aliceblue;
+            font-size: 15px;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
         .hister-info {
             color: aliceblue;
             margin-top: 35px;
@@ -286,8 +305,17 @@
             transition: 0.4s;
             font-size: 55px;
             cursor: pointer;
+            border: none;
             box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 57.5px;
+            border-radius: 20px;
+        }
+
+        #btn:active {
+            transform: scale(0.97);
+        }
+
+        #btn1:active {
+            transform: scale(0.97);
         }
 
         #btn1 {
@@ -297,26 +325,25 @@
             font-size: 30px;
             cursor: pointer;
             box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 57.5px;
+            border-radius: 20px;
+            border: none;
         }
 
         .btn1-low {
-            background-color: rgb(151, 110, 57);
-            box-shadow: inset 3px 66px 40px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(180deg, #ffa600 0%, #975f03 100%);
         }
 
         .btn1-high {
-            background-color: rgb(242, 255, 0);
+            background: linear-gradient(180deg, #ddff00 0%, #b9cd02 100%);
         }
 
         .btn-on {
-            border: 3px solid green;
-            background-color: rgb(162, 224, 103);
+            background: linear-gradient(180deg, #27D71C 0%, #ABE605 100%);
+            transition: 0.4s;
         }
 
         .btn-off {
-            border: 3px solid red;
-            background-color: rgb(222, 121, 121);
+            background: linear-gradient(180deg, #d71c1c 0%, #e65f05 100%);
         }
     </style>
     <script>
@@ -330,6 +357,7 @@
         const maxRes = document.querySelector(".reset-max");
         const rain = document.querySelector(".rain");
         const hister = document.querySelector(".hister-info");
+        const when = document.querySelector(".when");
 
 
 
@@ -382,7 +410,9 @@
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
-                    hister.innerHTML = response;
+                    let arr = response.split("?");
+                    hister.innerHTML = arr[0];
+                    when.innerHTML = arr[1];
                 } else {
                     alert("Не в одной сети!");
                 }
@@ -516,7 +546,7 @@
       function lamper () {
         lamp.classList.add("h-btn");
         weat.classList.remove("h-btn");
-        box.style.left = "-330px";
+        box.style.left = "-320px";
       }
 
     </script>

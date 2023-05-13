@@ -160,7 +160,7 @@
 
       function switcher() {
         var request = new XMLHttpRequest();
-        request.open("GET", "../switch", false);
+        request.open("GET", "http://192.168.1.170/switch", false);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -174,7 +174,7 @@
 
       function satur() {
         var request = new XMLHttpRequest();
-        request.open("GET", "../satur", false);
+        request.open("GET", "http://192.168.1.170/satur", false);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -188,7 +188,7 @@
 
       function info() {
         var request = new XMLHttpRequest();
-        request.open("GET", "../info", true);
+        request.open("GET", "http://192.168.1.170/info", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -204,7 +204,7 @@
               btn.classList.remove("btn-off");
               btn.classList.add("btn-on");
             }
-            if (maxVal == 300) {
+            if (maxVal == 100) {
               btn1.classList.remove("btn1-high");
               btn1.classList.add("btn1-low");
             } else {

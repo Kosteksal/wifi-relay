@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Выключатель</title>
+
+</head>
+<body>
+  <div class="header">
+    <h1>Выключатель</h1>
+  </div>
+  <div class="btn-cont">
+    <button id="btn" class="click">click</button>
+    <button id="btn" class="press">press</button>
+  </div>
+  <style>
+    
+    body {
+      width: 370px;
+      height: 100%;
+      margin: 0 auto;
+      background-color: #2E2E3E;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+      width: 300px;
+      height: 42px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      gap: 50px;
+      margin-top: 20px;
+      padding: 10px;
+      background: rgba(70, 71, 94, 0.7);
+      border-radius: 20px;
+    }
+
+    #btn {
+      height: 100px;
+      width: 250px;
+      transition: 0.4s;
+      font-size: 55px;
+      cursor: pointer;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      border: none;
+
+    }
+
+    .btn-cont {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+      gap: 10px;
+    }
+
+
+    h1 {
+      text-align: center;
+      color: aliceblue;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      margin-right: 10px;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 16px;
+    }
+
+    .click {
+      background-color: rgb(231, 153, 19);
+    }
+
+    .press {
+      background-color: red;
+    }
+
+    .click:active {
+     transform: scale(0.92);
+    }
+    .press:active {
+     transform: scale(0.92);
+    }
+
+  </style>
+  <script>
+    const btn = document.querySelector(".click");
+    const btn1 = document.querySelector(".press");
+
+      var relStatus = 0;
+
+      function on() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.180/on", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            console.log(response);
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      function off() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.180/off", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            console.log(response);
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+      btn.addEventListener("click", on);
+      btn1.addEventListener("click", off);
+
+  </script>
+</body>
+
+</html>
