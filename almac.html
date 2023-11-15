@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алмак дом</title>
+
+</head>
+
+<body>
+    <div class="header">
+        <a href="http://192.168.1.200/"><button class="home-btn h-btn">&#127968;</button></a>
+        <h1>Алмак дом</h1>
+    </div>
+    <div class="btn-cont">
+        <div class="temp-cont">
+            <div class="sensor temp">
+                <h2>Температура</h2>
+                <p class="sens temper">--</p>
+            </div>
+            <div class="sensor hudm">
+                <h2>Влажность</h2>
+                <p class="sens hudmer">--</p>
+            </div>
+        </div>
+        <div class="termos-cont">
+            <h2>Термостат </h2>
+            <div style="display: flex;flex-direction: row;align-items: center;">
+                <div class="indic"></div>
+                <div class="term-temp">--</div>
+                <input id="inp" class="inputs" type="number">
+                <button class="term-btn">➡️</button>
+            </div>
+
+        </div>
+        <button id="btn" class="">ON/OFF</button>
+    </div>
+    <style>
+        .temp-cont {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .sensor {
+            margin-top: 0;
+            height: 110px;
+            width: 110px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #2E2E3E;
+            box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            border: 3px solid #27D71C;
+        }
+
+        .indic {
+            height: 30px;
+            width: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            margin-right: 10px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: aliceblue;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        .sens {
+            font-size: 26px;
+            color: aliceblue;
+            margin-top: 0;
+        }
+
+        .termos-cont {
+            margin-top: 0;
+            height: 110px;
+            width: 255px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #2E2E3E;
+            box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            border: 3px solid #27D71C;
+        }
+
+        .term-temp {
+            color: aliceblue;
+            font-size: 30px;
+        }
+
+        .inputs {
+            width: 40px;
+            height: 30px;
+            font-size: 25px;
+            margin-left: 10px;
+            border-radius: 12px;
+        }
+
+        .term-btn {
+            height: 35px;
+            width: 35px;
+            margin-left: 10px;
+            border: none;
+            background-color: transparent;
+            border-radius: 12px;
+            font-size: 30px;
+            display: flex;
+            align-items: center
+        }
+
+        body {
+            width: 370px;
+            height: 100%;
+            margin: 0 auto;
+            background-color: #2E2E3E;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            width: 300px;
+            height: 42px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 50px;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
+        }
+
+        .home-btn {
+            background: #282838;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            border: none;
+            font-size: 25px;
+            cursor: pointer;
+            border: 3px solid #27D71C;
+        }
+
+        .btn-cont {
+            width: 300px;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            gap: 10px;
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        #btn {
+            height: 100px;
+            width: 250px;
+            transition: 0.4s;
+            font-size: 55px;
+            cursor: pointer;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            border: none;
+        }
+
+        .btn-on {
+            background: linear-gradient(180deg, #27D71C 0%, #ABE605 100%);
+            transition: 0.4s;
+        }
+
+        .btn-on:hover {
+            background: linear-gradient(180deg, #077000 0%, #ABE605 100%);
+        }
+
+        .btn-on:active {
+            box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+            transform: scale(0.97);
+        }
+
+        .btn-off:active {
+            box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+            transform: scale(0.97);
+        }
+
+        .btn-off {
+            background: linear-gradient(180deg, #d71c1c 0%, #e65f05 100%);
+        }
+
+        .btn-off:hover {
+            background: linear-gradient(180deg, #610505 0%, #e65f05 100%);
+        }
+
+        h1 {
+            text-align: center;
+            color: aliceblue;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            margin-right: 10px;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 16px;
+        }
+
+        .onBtn {
+            height: 50px;
+            width: 50px;
+            background-color: rgb(180, 202, 235);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 30px;
+        }
+
+        .onBtn:active {
+            box-shadow: 1px 0px 22px 18px rgba(34, 60, 80, 0.2);
+            border: 2px solid red;
+        }
+    </style>
+    <script>
+        const btn = document.querySelector("#btn");
+        const temper = document.querySelector('.temper');
+        const hudmer = document.querySelector('.hudmer');
+        const termer = document.querySelector('.term-temp');
+        const input = document.querySelector('.inputs');
+        const termBtn = document.querySelector('.term-btn');
+        const indic = document.querySelector('.indic');
+
+        var informArr;
+
+        var relStatus = 0;
+
+        function switcher() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.195/switch", false);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    relStatus = Number.parseInt(response);
+                    if (relStatus == 0) {
+                        btn.classList.remove("btn-on");
+                        btn.classList.add("btn-off");
+                    } else {
+                        btn.classList.remove("btn-off");
+                        btn.classList.add("btn-on");
+                    }
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function info() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.195/info", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    relStatus = response;
+                    graphStr = response.split(";");
+                    console.log(graphStr);
+                    temper.innerHTML = `${graphStr[0]} °C`;
+                    hudmer.innerHTML = `${graphStr[1]} %`;
+                    termer.innerHTML = `${graphStr[2]} °C`;
+                    if (graphStr[3] == 0) {
+                        btn.classList.remove("btn-on");
+                        btn.classList.add("btn-off");
+                        btn.innerHTML = 'OFF';
+                    } else {
+                        btn.classList.remove("btn-off");
+                        btn.classList.add("btn-on");
+                        btn.innerHTML = 'ON';
+                    };
+                    if (graphStr[4] == 0) {
+                        indic.style.backgroundColor = "#0180d7";
+                    } else {
+                        indic.style.backgroundColor = "#d77901";
+                    }
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function termostat() {
+            var inp = input.value;
+            if (inp !== "") {
+                var request = new XMLHttpRequest();
+                request.open("GET", `http://192.168.1.195/temp?termos=${inp}`, true);
+                console.log(inp);
+                request.onload = function () {
+                    if (request.readyState == 4 && request.status == 200) {
+
+                    } else {
+                        alert("Не в одной сети!");
+                    }
+                };
+                request.send();
+            }
+        };
+
+        btn.addEventListener("click", switcher);
+        termBtn.addEventListener("click", termostat);
+
+        document.addEventListener("DOMContentLoaded", info);
+
+        setInterval(info, 1000);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,933 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Большое Захонье</title>
+    <link rel="icon" href="./favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="header">
+        <h1>&#127969; Большое Захонье</h1>
+        
+    </div>
+    <div class="container">
+        <div class="card-box">
+            <div class="meteo">
+                <div class="temp-cont dom">
+                    <div class="item-h"><h2>Дом</h2> <a class="almac" href="http://192.168.1.195/"><p class="temp temp-home">-- °C</p></a></div>
+                    <!-- <div class="item"><p class="ico">&#128161;</p><a href="">item item item</a> <button class="btn "></button></div> -->
+                    <!-- <div class="item"><p class="ico">&#128161;</p><a href="http://192.168.1.163/">Лампа</a> <button class="btn btn1"></button></div> -->
+                    <div class="item radiola"><p class="ico">📻</p><a href="http://192.168.1.181/">Радиола</a> 
+                    <div  class="rab">
+                        <div class="rab1">
+                            <p class="rabi">📻</p>
+                            <p class="rabi">&#129518;</p>
+                        </div>
+                        <div class="rab1">
+                            <button class="rabt rabt1">ON</button>
+                            <button class="rabt rabt2">ON</button>
+                        </div>
+                        <div class="rab1">
+                            <button class="rabt rabt3">OFF</button>
+                            <button class="rabt rabt4">OFF</button>
+                        </div>
+                    </div>   
+                        <!-- <button class="btn btn5" style="background-color: #5c6bc0;"></button> -->
+                        <div class="radio-day">
+                            <button style="width: 30px;" class="btn moon1">🌙</button> <button style="width: 30px;" class="btn lamp1">☀️</button>
+                        </div>
+                    </div>
+                    <div class="item"><p class="ico">🚿🫕</p><a href="http://192.168.1.192/" style="font-size: 15px;">Подсветка</a> <button class="btn btn7"></button><button class="btn btn8"></button></div>
+                    <div class="item"><p class="ico" style="transform: rotateZ(180deg);">&#128161;&#128161;</p><a style="font-size: 15px;" href="http://192.168.1.191/">Лампы над столом</a> <button class="btn btn6"></button></div>
+                </div>
+                <div class="temp-cont ulitsa">
+                    <div class="item-h"><h2>Улица</h2> <a href="http://192.168.1.160/"><p class="temp temp-out">-- °C</p></a></div>
+                    <div class="item"><p class="ico">&#128161;</p><a href="http://192.168.1.172/">Прожектор улица</a> <button class="btn btn4"></button></div>
+                    <div class="item"><p class="ico">&#128161;</p><a href="http://192.168.1.170/">Прожектор баня</a> <button class="btn btn1"></button></div>
+                    
+                </div>
+                <div class="temp-cont veranda">
+                    <div class="item-h"><h2>Веранда</h2> <a href="http://192.168.1.160/"><p class="temp temp-ver">-- °C</p></a></div>
+                    <div class="item"><p class="ico">&#128161;</p><a href="http://192.168.1.171/">Светильник</a> <button class="btn btn2"></button></div>
+                    <div class="item"><p class="ico">&#129518;</p><a href="http://192.168.1.180/">Ночник</a> <button style="width: 30px;" class="btn moon">🌙</button> <button style="width: 30px;" class="btn lamp">☀️</button> <button class="btn btn3"></button></div>
+                </div>
+                <div class="temp-cont halupa">
+                    <h2>Летняя кухня</h2>
+                    <div class="item"><p class="ico">&#128161;</p><a href="">item item item</a> <button class="btn "></button></div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>
+        <a class="foo-link" href="http://my.keenetic.net">📡</a>
+        <p class="foo-link">2023</p>
+    </footer>
+    <style>
+        .container {
+
+        }
+
+        .dom {
+            box-shadow: inset 0px 18px 5px -4px #828b51;
+        }
+
+        .ulitsa {
+            box-shadow: inset 0px 18px 5px -4px #4C6577;
+        }
+
+        .veranda {
+            box-shadow: inset 0px 18px 5px -4px #795548;
+        }
+
+        .halupa {
+            box-shadow: inset 0px 18px 5px -4px #CC904F;
+        }
+
+        .radio-day {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .moon {
+            background-color: #0f0f54;
+            width: 30px;
+        }
+
+        .lamp {
+            background-color: #4e4904;
+        }
+
+        .moon1 {
+            background-color: #0f0f54;
+            width: 30px;
+        }
+
+        .lamp1 {
+            background-color: #4e4904;
+        }
+
+        .rab {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .rab1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rabi {
+            margin: 1px 1px;
+        }
+
+        .rabt {
+            height: 20px;
+            width: 30px;
+            border-radius: 15px;
+            color: aliceblue;
+            font-size: 8px;
+        }
+
+        .rabt1 {
+            background-color: rgb(69, 110, 7);
+        }
+
+        .rabt3 {
+            background-color: #d04444;
+        }
+
+        .rabt2 {
+            background-color: rgb(69, 110, 7);
+        }
+
+        .rabt4 {
+            background-color: #d04444;
+        }
+
+        footer {
+            padding-top: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 175px;
+            align-items: center;
+            font-size: 20px;
+            color: aliceblue;
+            margin: 0;
+            padding-bottom: 20px;
+        }
+
+        .foo-link {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .on {
+            background-color: #e6d12e;
+        }
+
+        .off {
+            background-color: rgb(11, 48, 79);
+        }
+
+        .not {
+            background-color: rgb(136, 212, 243);
+        }
+
+        .btn {
+            height: 30px;
+            width: 45px;
+            border-radius: 15px;
+            color: aliceblue;
+        }
+
+        .ico {
+            font-size: 25px;
+        }
+
+        a {
+            text-decoration: none;
+            color: aliceblue;
+            font-size: 20px;
+        }
+
+        .card-box {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            position: inherit;
+            left: 20px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        body {
+            width: 360px;
+            height: 100%;
+            margin: 0 auto;
+            background-color: #2E2E3E;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            width: 300px;
+            height: 42px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 50px;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
+        }
+
+        .temp {
+            height: 30px;
+            width: 70px;
+            padding-left: 15px;
+            padding-top: 5px;
+            font-size: 15px;
+            color: aliceblue;
+            background-color: #292b3c;
+            border-radius: 15px;
+        }
+
+       
+
+        .temp-cont {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(70, 71, 94, 0.7);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        
+
+        h1 {
+            text-align: center;
+            color: aliceblue;
+            margin: 10px 0;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 16px;
+        }
+
+        h2 {
+            color: aliceblue;
+            margin-top: 10px;
+            margin-bottom: 0;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 16px;
+        }
+
+        .title {
+            color: aliceblue;
+            margin-left: 95px;
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 23px;
+        }
+
+      
+
+        .hi {
+            height: 160px;
+            gap: 5px;
+        }
+
+        .item {
+            margin-top: 15px;
+            height: 40px;
+            width: 260px;
+            color: aliceblue;
+            font-size: 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+            border-radius: 15px;
+            background-color: #292b3c;
+        }
+
+        .item-h {
+            height: 40px;
+            width: 260px;
+            color: aliceblue;
+            font-size: 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .radiola {
+            height: 60px;
+        }
+
+        @media screen and (min-width: 1200px) and (orientation: landscape) {
+
+            .meteo {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .header {
+                width: 365%;
+            }
+
+            footer {
+                gap: 565px;
+            }
+
+            .temp-cont {
+                height: 400px;
+                border-radius: 40px;
+                justify-content: flex-start;
+            }
+
+            .item {
+                height: 60px;
+                
+            }
+
+            a {
+                font-size: 25px;
+            }
+
+            .btn {
+                height: 50px;
+                width: 50px;
+            }
+
+            .ico {
+                
+            }
+
+            .moon1 {
+                height: 30px;
+            }
+
+            .lamp1 {
+                height: 30px;
+            }
+
+            .temp {
+                height: 45px;
+                width: 90px;
+                font-size: 22px;
+            }
+
+            .item-h {
+                align-items: baseline;
+                margin-bottom: 30px;
+            }
+
+            h2 {
+                font-size: 27px;
+            }
+
+
+
+
+        }
+
+        
+    </style>
+    <script>
+
+  
+        const temp = document.querySelector(".temp");
+        const tempVer = document.querySelector(".temp-ver");
+        const tempOut = document.querySelector(".temp-out");
+        const tempHome = document.querySelector(".temp-home");
+        const btn1 = document.querySelector(".btn1");
+        const btn2 = document.querySelector(".btn2");
+        const btn3 = document.querySelector(".btn3");
+        const btn4 = document.querySelector(".btn4");
+        const btn5 = document.querySelector(".btn5");
+        const btn6 = document.querySelector(".btn6");
+        const btn7 = document.querySelector(".btn7");
+        const btn8 = document.querySelector(".btn8");
+        
+
+        const rabt1 = document.querySelector(".rabt1");
+        const rabt2 = document.querySelector(".rabt2");
+        const rabt3 = document.querySelector(".rabt3");
+        const rabt4 = document.querySelector(".rabt4");
+        const moon1 = document.querySelector(".moon1");
+        const lamp1 = document.querySelector(".lamp1");
+
+        const moon = document.querySelector(".moon");
+        const lamp = document.querySelector(".lamp");
+
+
+
+        function temperOut() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/tempOut", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    tempOut.innerHTML = `${response} °C`;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function temperVer() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/temp", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    tempVer.innerHTML = `${response} °C`;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function temperHome() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.195/info", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    var graphStr;
+                    relStatus = response;
+                    graphStr = response.split(";");
+                    //console.log(graphStr);
+                    tempHome.innerHTML = `${graphStr[0]} °C`;
+                    if (graphStr[3] == 1) {
+                        tempHome.style.backgroundColor = "#ff99008f";
+                    } else {
+                        
+                    };
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function information() {
+                /////////
+
+                function inf0() {
+                    var request = new XMLHttpRequest(); //btn1
+                    request.open("GET", "http://192.168.1.170/info", true);
+                    request.onload = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var response = request.responseText;
+                            if (response == 0) {
+                                btn1.classList.add("off");
+                                btn1.classList.remove("on");
+                                btn1.innerHTML = "OFF";
+                            } else {
+                                btn1.classList.add("on");
+                                btn1.classList.remove("off");
+                                btn1.innerHTML = "ON";
+                            }
+                        } else {
+                            console.log("Не в одной сети!");
+                        }
+                    };
+                    request.send();
+                }
+
+                //////////
+
+                function inf1() {
+                    var request = new XMLHttpRequest(); //btn2
+                    request.open("GET", "http://192.168.1.171/info", true);
+                    request.onload = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var response = request.responseText;
+                            if (response == 0) {
+                                btn2.classList.add("off");
+                                btn2.classList.remove("on");
+                                btn2.innerHTML = "OFF";
+                            } else {
+                                btn2.classList.add("on");
+                                btn2.classList.remove("off");
+                                btn2.innerHTML = "ON";
+                            }
+                        } else {
+                            alert("Не в одной сети!");
+                        }
+                    };
+                    request.send();
+                }
+
+                function inf2() {
+                    var request = new XMLHttpRequest(); //btn3
+                    request.open("GET", "http://192.168.1.180/win&NN", true);
+                    request.onload = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var response = request.responseText;
+                            var resp = response.toString();
+                            var on = resp[30];
+                            //console.log(resp[30]);
+                            if (on == 0) {
+                                btn3.classList.add("off");
+                                btn3.classList.remove("on");
+                                btn3.innerHTML = "OFF";
+                            } else {
+                                btn3.classList.add("on");
+                                btn3.classList.remove("off");
+                                btn3.innerHTML = "ON";
+                            }
+                        } else {
+                            alert("Не в одной сети!");
+                        }
+                    };
+                    request.send();
+                }
+
+                function inf3() {
+                    var request = new XMLHttpRequest(); //btn4
+                    request.open("GET", "http://192.168.1.172/info", true);
+                    request.onload = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var response = request.responseText;
+                            if (response == 0) {
+                                btn4.classList.add("off");
+                                btn4.classList.remove("on");
+                                btn4.innerHTML = "OFF";
+                            } else {
+                                btn4.classList.add("on");
+                                btn4.classList.remove("off");
+                                btn4.innerHTML = "ON";
+                            }
+                        } else {
+                            alert("Не в одной сети!");
+                        }
+                    };
+                    request.send();
+                }
+                
+
+
+                function inf4() {
+                    var request = new XMLHttpRequest(); //btn5
+                    request.open("GET", "http://192.168.1.181/win&NN", true);
+                    request.onload = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var response = request.responseText;
+                            var resp = response.toString();
+                            var on = resp[30];
+                            //console.log(resp);
+                            if (on == 0) {
+                                //btn5.classList.add("off");
+                                //btn5.classList.remove("on");
+                                btn5.innerHTML = "OFF";
+                            } else {
+                                //btn5.classList.add("on");
+                                //btn5.classList.remove("off");
+                                btn5.innerHTML = "ON";
+                            }
+                        } else {
+                            alert("Не в одной сети!");
+                        }
+                    };
+                    request.send();
+                }
+                //////////
+
+                function inf5() {
+                    var request = new XMLHttpRequest(); //btn6
+                    request.open("GET", "http://192.168.1.191/info", true);
+                    request.onload = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var response = request.responseText;
+                            if (response == 0) {
+                                btn6.classList.add("off");
+                                btn6.classList.remove("on");
+                                btn6.innerHTML = "OFF";
+                            } else {
+                                btn6.classList.add("on");
+                                btn6.classList.remove("off");
+                                btn6.innerHTML = "ON";
+                            }
+                        } else {
+                            alert("Не в одной сети!");
+                        }
+                    };
+                    request.send();
+                }
+
+                function inf6() {                  /////btn7 btn8
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.192/info", true);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = response;
+            //console.log(response);
+            if (relStatus[0] == 0) {
+              btn7.classList.remove("on");
+              btn7.classList.add("off");
+              btn7.innerHTML = 'OFF';
+            } else {
+              btn7.classList.remove("off");
+              btn7.classList.add("on");
+              btn7.innerHTML = 'ON';
+            };
+            if (relStatus[1] == 0) {
+              btn8.classList.remove("on");
+              btn8.classList.add("off");
+              btn8.innerHTML = 'OFF';
+            } else {
+              btn8.classList.remove("off");
+              btn8.classList.add("on");
+              btn8.innerHTML = 'ON';
+            };
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
+                inf0();
+                inf1();
+                inf2();
+                inf3();
+                //inf4();
+                inf5();
+                inf6();
+            }
+//////////
+        function btn1sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.170/switch", false);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function btn2sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.171/switch", false);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+        function btn3sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.180/win&T=3", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function btn4sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.172/switch", false);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function btn5sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.181/win&T=3", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function btn6sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.191/switch", false);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+
+        function btn7sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.192/switchl", false);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function btn8sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.192/switchr", false);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+
+
+
+
+        ///////////////radio
+        function rabt1sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.181/win&PL=7", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function rabt2sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.181/win&PL=10", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function rabt3sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.181/win&PL=8", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function rabt4sw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.181/win&PL=11", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+
+        ///////////////
+
+
+        function moonsw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.180/win&PL=8", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function lampsw() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.180/win&PL=7", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+
+
+        function moonsw1() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.181/win&PL=18", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function lampsw1() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.181/win&PL=9", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+
+                    
+                } else {
+                    //alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        
+
+
+
+        setInterval(information, 1000);
+        document.addEventListener("DOMContentLoaded", information);
+        document.addEventListener("DOMContentLoaded", temperOut);
+        document.addEventListener("DOMContentLoaded", temperVer);
+        document.addEventListener("DOMContentLoaded", temperHome);
+
+
+        btn1.addEventListener("click", btn1sw);
+        btn2.addEventListener("click", btn2sw);
+        btn3.addEventListener("click", btn3sw);
+        btn4.addEventListener("click", btn4sw);
+        //btn5.addEventListener("click", btn5sw);
+        btn6.addEventListener("click", btn6sw);
+        btn7.addEventListener("click", btn7sw);
+        btn8.addEventListener("click", btn8sw);
+
+
+        rabt1.addEventListener("click", rabt1sw);
+        rabt2.addEventListener("click", rabt2sw);
+        rabt3.addEventListener("click", rabt3sw);
+        rabt4.addEventListener("click", rabt4sw);
+
+        moon.addEventListener("click", moonsw);
+        lamp.addEventListener("click", lampsw);
+        moon1.addEventListener("click", moonsw1);
+        lamp1.addEventListener("click", lampsw1);
+
+        //<?xml version="1.0" ?><vs><ac>37</ac><cl>255</cl><cl>191</cl><cl>
+
+    </script>
+</body>
+
+</html>
+

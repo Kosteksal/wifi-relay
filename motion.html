@@ -1,0 +1,91 @@
+
+<!-- saved from url=(0036)https://www.manhunter.ru/demo/f.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"></head><body cz-shortcut-listen="true"><div id="div1">Accelerometer:<br>X=null<br>Y=null<br>Z=null</div>
+    <br>
+    <div id="div2">Magnetometer:<br>Alpha=null<br>Beta=null<br>Gamma=null</div>
+    <br>
+    <div id="div3">DeviceProximityEvent is not supported</div>
+    <br>
+    <div id="div4">DeviceLightEvent is not supported</div>
+    <br>
+    <img id="my_image" src="./manhunter.ru_demo_f_files/morning.jpg" style="margin: auto; transform: rotate(0deg);">
+    
+    <script type="text/javascript">
+    if (window.DeviceMotionEvent) {
+        window.addEventListener("devicemotion", motion, false);
+    }
+    else {
+        document.getElementById('div1').innerHTML=("DeviceMotionEvent is not supported");
+    }
+    
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", orientation, false);
+    }
+    else {
+        document.getElementById('div2').innerHTML=("DeviceOrientationEvent is not supported");
+    }
+    
+    if (window.DeviceProximityEvent) {
+        window.addEventListener("deviceproximity", proximity, false);
+    }
+    else {
+        document.getElementById('div3').innerHTML=("DeviceProximityEvent is not supported");
+    }
+    
+    if (window.DeviceLightEvent) {
+        window.addEventListener("devicelight", light_hook, false);
+    }
+    else {
+        document.getElementById('div4').innerHTML=("DeviceLightEvent is not supported");
+    }
+    
+    function motion(event) {
+        document.getElementById('div1').innerHTML=("Accelerometer:<br/>X="
+            + event.accelerationIncludingGravity.x + "<br/>Y="
+            + event.accelerationIncludingGravity.y + "<br/>Z="
+            + event.accelerationIncludingGravity.z
+        );
+        var el=document.getElementById('my_image');
+        var degree;
+        if (event.accelerationIncludingGravity.y<0) {
+            degree=180-90*event.accelerationIncludingGravity.x/10;
+        }
+        else {
+            if (event.accelerationIncludingGravity.x<0) {
+                degree=360+90*event.accelerationIncludingGravity.x/10;
+            }
+            else {
+                degree=90*event.accelerationIncludingGravity.x/10;
+            }
+        }
+        el.style.webkitTransform='rotate(' + degree + 'deg)';
+        el.style.MozTransform='rotate(' + degree + 'deg)';
+        el.style.msTransform='rotate(' + degree + 'deg)';
+        el.style.OTransform='rotate(' + degree + 'deg)';
+        el.style.transform='rotate(' + degree + 'deg)';
+    }
+    
+    function orientation(event) {
+        document.getElementById('div2').innerHTML=("Magnetometer:<br/>Alpha="
+            + event.alpha + "<br/>Beta="
+            + event.beta + "<br/>Gamma="
+            + event.gamma
+        );
+    }
+    
+    function proximity(event) {
+        document.getElementById('div3').innerHTML=("Proximity: "
+            + event.value + ", "
+            + event.min + ", "
+            + event.max
+        );
+    }
+    
+    function light_hook(event) {
+        document.getElementById('div4').innerHTML=("Light: "
+            + event.value
+        );
+    }
+    </script>
+    
+    <script type="text/javascript" src="chrome-extension://emikbbbebcdfohonlaifafnoanocnebl/js/minerkill.js"></script></body></html>

@@ -5,16 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лампы в доме</title>
+  <title>Кухня</title>
 
 </head>
 <body>
   <div class="header">
     <a href="http://192.168.1.200/"><button class="home-btn h-btn">&#127968;</button></a>
-    <h1>Лампы в доме</h1>
+    <h1>Подсветка кухни</h1>
   </div>
   <div class="btn-cont">
     <button id="btn" class="">ON/OFF</button>
+    <button id="btn1" class="">ON/OFF</button>
   </div>
   <style>
     
@@ -58,7 +59,7 @@
       width: 300px;
       height: 300px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: space-around;
       gap: 10px;
@@ -72,7 +73,17 @@
       height: 100px;
       width: 250px;
       transition: 0.4s;
-      font-size: 55px;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      border: none;
+    }
+    #btn1 {
+      height: 100px;
+      width: 250px;
+      transition: 0.4s;
+      font-size: 30px;
       cursor: pointer;
       box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
@@ -135,12 +146,13 @@
   </style>
   <script>
     const btn = document.querySelector("#btn");
+    const btn1 = document.querySelector("#btn1");
 
       var relStatus = 0;
 
-      function switcher() {
+      function switcherl() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.191/switch", false);
+        request.open("GET", "http://192.168.1.192/switchl", false);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -159,9 +171,30 @@
         request.send();
       }
 
+      function switcherr() {
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://192.168.1.192/switchr", false);
+        request.onload = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            relStatus = Number.parseInt(response);
+            if (relStatus == 0) {
+              btn1.classList.remove("btn-on");
+              btn1.classList.add("btn-off");
+            } else {
+              btn1.classList.remove("btn-off");
+              btn1.classList.add("btn-on");
+            }
+          } else {
+            alert("Не в одной сети!");
+          }
+        };
+        request.send();
+      }
+
       function info() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.191/info", true);
+        request.open("GET", "http://192.168.1.192/info", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
@@ -170,11 +203,20 @@
             if (relStatus[0] == 0) {
               btn.classList.remove("btn-on");
               btn.classList.add("btn-off");
-              btn.innerHTML = 'OFF';
+              btn.innerHTML = 'Мойка OFF';
             } else {
               btn.classList.remove("btn-off");
               btn.classList.add("btn-on");
-              btn.innerHTML = 'ON';
+              btn.innerHTML = 'Мойка ON';
+            };
+            if (relStatus[1] == 0) {
+              btn1.classList.remove("btn-on");
+              btn1.classList.add("btn-off");
+              btn1.innerHTML = 'Кухня OFF';
+            } else {
+              btn1.classList.remove("btn-off");
+              btn1.classList.add("btn-on");
+              btn1.innerHTML = 'Кухня ON';
             };
           } else {
             alert("Не в одной сети!");
@@ -183,7 +225,8 @@
         request.send();
       }
 
-      btn.addEventListener("click", switcher);
+      btn.addEventListener("click", switcherl);
+      btn1.addEventListener("click", switcherr);
 
       document.addEventListener("DOMContentLoaded", info);
 

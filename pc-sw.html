@@ -100,12 +100,12 @@
 
       function on() {
         var request = new XMLHttpRequest();
-        request.open("GET", "http://192.168.1.180/on", true);
+        request.open("GET", "https://meteo.zahonie.keenetic.pro/addr?func=http://192.168.1.172/info", true);
         request.onload = function () {
           if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             relStatus = response;
-            console.log(response);
+            console.log(response.toString());
           } else {
             alert("Не в одной сети!");
           }
