@@ -31,12 +31,31 @@
                     <button class="reset-min">Сброс!</button>
                     <p class="when">--</p>
                 </div>
+                <div class="btn-cont graph-cont">
+                    <div class="ginf">
+                        <p class="grp">20</p>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <p class="grp">0</p>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <p class="grp">-20</p>
+                    </div>
+                    <div class="gcont">
+                        <div class="graph">   
+                        </div>
+                        <div class="graph-bl">
+                        </div>
+                    </div>
+                    
+                </div>
                 <canvas class="chart"></canvas>
             </div>
         </div>
     </div>
     <script src="./chart.min.js"></script>
     <style>
+
         .ginf {
             display: flex;
             flex-direction: column;
@@ -245,9 +264,9 @@
             margin-bottom: 2px;
             margin-right: 10px;
             font-style: normal;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 16px;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 16px;
         }
 
         h2 {
@@ -255,9 +274,9 @@
             margin-top: 10px;
             margin-bottom: 0;
             font-style: normal;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 16px;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 16px;
         }
 
         .title {
@@ -337,7 +356,7 @@
         }
 
         .when {
-            color: #f0f8ff;
+            color: aliceblue;
             font-size: 15px;
             margin-bottom: 0;
             margin-top: 0;
@@ -403,13 +422,6 @@
         .btn-off {
             background: linear-gradient(180deg, #d71c1c 0%, #e65f05 100%);
         }
-
-        .chart {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            background: rgba(70, 71, 94, 0.7);
-            border-radius: 20px;
-        }
     </style>
     <script>
 
@@ -423,7 +435,7 @@
         const rain = document.querySelector(".rain");
         const hister = document.querySelector(".hister-info");
         const when = document.querySelector(".when");
-        // const graphic = document.querySelector(".graph");
+        const graphic = document.querySelector(".graph");
 
         var graphStr;
 
@@ -431,7 +443,7 @@
 
         function temper() {
             var request = new XMLHttpRequest();
-            request.open("GET", "../temp", true);
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/temp", true);
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
@@ -445,7 +457,7 @@
 
         function temperOut() {
             var request = new XMLHttpRequest();
-            request.open("GET", "../tempOut", true);
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/tempOut", true);
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
@@ -459,7 +471,7 @@
 
         function presser() {
             var request = new XMLHttpRequest();
-            request.open("GET", "../hudm", true);
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/hudm", true);
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
@@ -474,7 +486,7 @@
 
         function getMin() {
             var request = new XMLHttpRequest();
-            request.open("GET", "../tempMid", true);
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/tempMid", true);
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
@@ -490,7 +502,7 @@
 
         function resMin() {
             var request = new XMLHttpRequest();
-            request.open("GET", "../reset", true);
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/reset", true);
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     getMin();
@@ -501,39 +513,39 @@
             request.send();
         }
 
-        // function graph () {
-        //     var request = new XMLHttpRequest();
-        //     request.open("GET", "https://meteo.zahonie.keenetic.pro/graph", true);
-        //     request.onload = function () {
-        //         if (request.readyState == 4 && request.status == 200) {
-        //             var response = request.responseText;
-        //             graphStr = response.split(";");
-        //             console.log(graphStr);
-        //             graphBuilder();
+        function graph () {
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/graph", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    graphStr = response.split(";");
+                    console.log(graphStr);
+                    graphBuilder();
 
-        //         } else {
-        //             alert("Не в одной сети!");
-        //         }
-        //     };
-        //     request.send();
-        // }
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
 
-        // function graphBuilder () {
-        //     graphStr.forEach(el => {
-        //         if (el[0] == "-") {
-        //             const palka = document.createElement("div");
-        //             palka.classList.add("palka");
-        //             palka.style.height = `${el*(-2)}px`;
-        //             palka.style.marginBottom = `${el*2}px`;
-        //             graphic.append(palka);
-        //         } else {
-        //             const palka = document.createElement("div");
-        //             palka.classList.add("palka");
-        //             palka.style.height = `${el*2}px`;
-        //             graphic.append(palka);
-        //     }
-        //     });
-        // }
+        function graphBuilder () {
+            graphStr.forEach(el => {
+                if (el[0] == "-") {
+                    const palka = document.createElement("div");
+                    palka.classList.add("palka");
+                    palka.style.height = `${el*(-2)}px`;
+                    palka.style.marginBottom = `${el*2}px`;
+                    graphic.append(palka);
+                } else {
+                    const palka = document.createElement("div");
+                    palka.classList.add("palka");
+                    palka.style.height = `${el*2}px`;
+                    graphic.append(palka);
+            }
+            });
+        }
 
         document.addEventListener("DOMContentLoaded", presser);
         document.addEventListener("DOMContentLoaded", temper);
@@ -541,13 +553,13 @@
         document.addEventListener("DOMContentLoaded", getMin);
         minRes.addEventListener("click", resMin);
 
-        //document.addEventListener("DOMContentLoaded", graph);
+        document.addEventListener("DOMContentLoaded", graph);
 
         document.addEventListener("DOMContentLoaded", grapher);
 
         function grapher() {
             var request = new XMLHttpRequest();
-            request.open("GET", "../graph", true);
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/graph", true);
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
@@ -555,7 +567,7 @@
                     arrtemp.pop();
                     graphertime();
                     char();
-                    console.log(arrtemp);
+                    //console.log(arrtemp);
 
                 } else {
                     alert("Не в одной сети!");
@@ -565,7 +577,7 @@
         }
 
 
-        let arrtemp = [];
+        let arrtemp =[];
         //console.log(arrtemp);
 
         let now = new Date();
@@ -575,25 +587,21 @@
 
         function graphertime() {
             arrtemp.forEach(el => {
-                var h = hour - (hoursarr.length + 1);
-                if (h > 24) {
-                    h = h - 24;
-                }
-                if (h == 24) {
-                    h = 0;
-                }
-                if (h < 0) {
-                    h = h + 24;
-                }
-                hoursarr.unshift(h);
-            })
-            //hoursarr.reverse();
-            console.log(hoursarr);
+            var h = hour + (hoursarr.length + 1);
+            if (h > 24) {
+                h = h-24;
+            }
+            if (h == 24) {
+                h = 0;
+            }
+            hoursarr.push(h);
+        })
+        //console.log(hoursarr);
         }
 
         let timearr;
 
-        function char() {
+        function char () {
 
             new Chart(
                 document.querySelector('.chart'),
@@ -605,59 +613,14 @@
                             {
                                 label: 'Температура сутки',
                                 data: arrtemp,
-                                borderColor: '#27D71C',
-                                hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                                hoverBorderColor: "rgba(255,99,132,1)",
+                                borderColor: '#FFB267',
                                 borderWidth: 1,
-                                backgroundColor: '#27D71C',
+                                backgroundColor: '#FFB267',
                                 cubicInterpolationMode: 'monotone' // добавили сглаживание углов
                             }
                         ]
                     },
-                    options: {
-                        plugins: {
-                            legend: {
-                                display: true,
-                                labels: {
-                                    color: '#f0f8ff'
-                                }
-                            },
-
-                        },
-                        scales: {
-                            x: {
-                                grid: {
-                                    color: '#2E2E3E',
-                                    borderColor: '#f0f8ff'
-                                },
-                                ticks: { 
-                                    color: '#f0f8ff',
-                                },
-                            },
-                            y: {
-                                suggestedMin: 0,
-                                suggestedMax: 0,
-                                grid: {
-                                    color: '#2E2E3E',
-                                    borderColor: '#f0f8ff'
-                                },
-                                ticks: { 
-                                    color: '#f0f8ff',
-                                },
-                            }
-                        }
-                        // scales: {
-                        //     y: {
-                                // suggestedMin: -20,
-                                // suggestedMax: 20,
-                        //         color: '#f0f8ff',
-                        //     },
-                        // grid: {
-                        //     color: '#f0f8ff',
-                        // }
-                        //},
-
-                    }
+                    options: {}
                 }
             );
 

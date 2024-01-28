@@ -15,8 +15,8 @@
     <div class="container">
         <div class="card-box">
             <div class="meteo">
-                <div class="temp-cont dom" style="height: 45px;">
-                    <div class="item-h"><h2>Дом</h2> <div class="db">c</div> <a class="almac" href="http://192.168.1.195/"><p class="temp temp-home">-- °C</p></a></div>
+                <div class="temp-cont dom">
+                    <div class="item-h"><h2>Дом</h2> <a class="almac" href="http://192.168.1.195/"><p class="temp temp-home">-- °C</p></a></div>
                     <!-- <div class="item"><p class="ico">&#128161;</p><a href="">item item item</a> <button class="btn "></button></div> -->
                     <!-- <div class="item"><p class="ico">&#128161;</p><a href="http://192.168.1.163/">Лампа</a> <button class="btn btn1"></button></div> -->
                     <div class="item radiola"><p class="ico">📻</p><a href="http://192.168.1.181/">Радиола</a> 
@@ -71,13 +71,8 @@
 
         }
 
-        body {
-            transition: 0.5s;
-        }
-
         .dom {
             box-shadow: inset 0px 18px 5px -4px #828b51;
-            transition: 0.5s;
         }
 
         .ulitsa {
@@ -254,13 +249,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-around;
             margin-top: 20px;
             padding: 10px;
             background: rgba(70, 71, 94, 0.7);
             border-radius: 20px;
             overflow: hidden;
-            
         }
 
         
@@ -428,32 +422,6 @@
 
         const moon = document.querySelector(".moon");
         const lamp = document.querySelector(".lamp");
-
-        const db = document.querySelector(".db");
-        const dom = document.querySelector(".dom");
-
-        let hdb = 0;
-
-        console.log(dom.offsetHeight);
-
-
-        db.addEventListener("click", dbdom);
-
-        function dbdom () {
-            
-            if (hdb == 0) {
-                hdb = 1;
-            } else {
-                hdb = 0;
-            }
-
-            if (hdb == 0) {
-                dom.style.height = "45px";
-            } else {
-                dom.style.height = "auto";
-                //dom.style.removeProperty('height');
-            }
-        }
 
 
 

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Температура</title>
+</head>
+
+<body>
+    <header>
+        <h1>Улица</h1>
+        <p class="temp">-30 °C</p>
+        <p class="st min">min -20 в 16:40</p>
+        <p class="st max">max 10 в 12:54</p>
+        <button class="reset">сброс статистики</button>
+        <p class="pres">Давление 766 мм.рт.ст</p>
+    </header>
+    <main>
+        <h2>Дом</h2>
+        <div class="cont-home">
+
+            <div class="block">
+                <p class="blp">Температура</p>
+                <p class="tempin">-20 °C</p>
+            </div>
+            <div class="block">
+                <p class="blp">Влажность</p>
+                <p class="hudm">30 %</p>
+            </div>
+        </div>
+        <canvas class="chart"></canvas>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="./chart.min.js"></script>
+    <style>
+        html {
+            background-color: #211D1D;
+            width: 370px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: aliceblue;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-left: 40px;
+            margin-top: 40px;
+        }
+
+        h2 {
+            color: aliceblue;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-left: 40px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .temp {
+            margin-left: 35px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color: aliceblue;
+            font-size: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .reset {
+            color: aliceblue;
+            font-size: 22px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #282424;
+            border-radius: 10px;
+            border: none;
+            margin-left: 33px;
+        }
+
+        header {
+            padding-top: 25px;
+            margin: 0 auto;
+            height: 350px;
+            width: 350px;
+            border-radius: 30px;
+            background: rgb(40, 36, 36);
+            background: linear-gradient(180deg, rgba(40, 36, 36, 1) 0%, rgba(51, 44, 40, 1) 13%, rgba(196, 139, 85, 1) 99%, rgba(255, 178, 103, 1) 100%);
+        }
+
+        .cont-home {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            width: 350px;
+            margin-top: 30px;
+
+        }
+
+        .block {
+            background-color: #282424;
+            height: 160px;
+            width: 160px;
+            border-radius: 30px;
+            border: 2px solid #FFB267;
+        }
+
+        .st {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 35px;
+            color: aliceblue;
+            font-size: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .blp {
+            margin-left: 0px;
+            color: aliceblue;
+            font-size: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .tempin {
+            margin-left: 20px;
+            color: aliceblue;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .hudm {
+            margin-left: 20px;
+            color: aliceblue;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .pres {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 35px;
+            color: aliceblue;
+            font-size: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .chart {
+            margin-top: 30px;
+        }
+
+    </style>
+    <script>
+
+        const temp = document.querySelector(".temp");
+        const tempin = document.querySelector(".tempin");
+        const pres = document.querySelector(".pres");
+        const hudm = document.querySelector(".hudm");
+        const reset = document.querySelector(".reset");
+        const min = document.querySelector(".min");
+        const max = document.querySelector(".max");
+
+        var inform;
+
+        function info() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/info", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    inform = response.split(";");
+                    //console.log(inform);
+                    builder();
+
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function builder() {
+            temp.innerHTML = `${inform[0]} °C`;
+            tempin.innerHTML = `${inform[1]} °C`;
+            hudm.innerHTML = `${inform[2]} %`;
+            pres.innerHTML = `Давление ${inform[3]} мм.рт.ст.`;
+            min.innerHTML = `min ${inform[4]} °C в ${inform[6]}`;
+            max.innerHTML = `max ${inform[5]} °C в ${inform[7]}`;
+        }
+
+        function resetter() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://192.168.1.160/reset", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    console.log("RESETED");
+                    info();
+
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+        function grapher() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://meteo.zahonie.keenetic.pro/graph", true);
+            request.onload = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var response = request.responseText;
+                    arrtemp = response.split(";");
+                    arrtemp.pop();
+                    graphertime();
+                    char();
+                    //console.log(arrtemp);
+
+                } else {
+                    alert("Не в одной сети!");
+                }
+            };
+            request.send();
+        }
+
+
+        document.addEventListener("DOMContentLoaded", info);
+        document.addEventListener("DOMContentLoaded", grapher);
+        reset.addEventListener("click", resetter);
+
+        let arrtemp =[];
+        //console.log(arrtemp);
+
+        let now = new Date();
+        let hour = now.getHours();
+        //console.log(hour);
+        let hoursarr = [];
+
+        function graphertime() {
+            arrtemp.forEach(el => {
+            var h = hour + (hoursarr.length + 1);
+            if (h > 24) {
+                h = h-24;
+            }
+            if (h == 24) {
+                h = 0;
+            }
+            hoursarr.push(h);
+        })
+        //console.log(hoursarr);
+        }
+
+        let timearr;
+
+        function char () {
+
+            new Chart(
+                document.querySelector('.chart'),
+                {
+                    type: 'line', // вернули линейный тип
+                    data: {
+                        labels: hoursarr,
+                        datasets: [
+                            {
+                                label: 'Температура сутки',
+                                data: arrtemp,
+                                borderColor: '#FFB267',
+                                borderWidth: 1,
+                                backgroundColor: '#FFB267',
+                                cubicInterpolationMode: 'monotone' // добавили сглаживание углов
+                            }
+                        ]
+                    },
+                    options: {}
+                }
+            );
+
+        }
+
+    </script>
+</body>
+
+</html>
