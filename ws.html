@@ -98,7 +98,7 @@
         let msg;
         let arr;
 
-        var connection = new WebSocket('ws://192.168.1.192:81/', ['arduino']);
+        var connection = new WebSocket('ws://192.168.1.170:81/', ['arduino']);
 
         connection.onopen = function () {
             //connection.send(msg);
@@ -119,10 +119,11 @@
             //console.log('Server: ', e.data);
             ws.innerHTML = e.data;
             gr = e.data.split(";");
-            arr = 210 / 1028 * gr[0] - 30;
+            arr = 210 / 100 * gr[0] - 30;
             //console.log(arr);
-            arrow.style.transform = `rotate(${arr}deg)`;
+           // arrow.style.transform = `rotate(${arr}deg)`;
             inp.value = gr[1];
+            //console.log(inp.value = gr[1]);
         };
 
         mes.addEventListener("click", message);

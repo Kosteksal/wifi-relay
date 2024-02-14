@@ -205,7 +205,7 @@
 
         function grapher() {
             var request = new XMLHttpRequest();
-            request.open("GET", "https://meteo.zahonie.keenetic.pro/graph", true);
+            request.open("GET", "http://192.168.1.62/proxy?a=https://meteo.zahonie.keenetic.pro/graph", true);
             request.onload = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var response = request.responseText;
